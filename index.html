@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Madhu Priya — Data Scientist & AI/ML Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --coral:    #D85A30; --coral-l:  #FAECE7;
+    --teal:     #1D9E75; --teal-l:   #E1F5EE;
+    --purple:   #7F77DD; --purple-l: #EEEDFE;
+    --amber:    #BA7517; --amber-l:  #FAEEDA;
+    --pink:     #D4537E; --pink-l:   #FBEAF0;
+    --blue:     #378ADD; --blue-l:   #E6F1FB;
+    --bg: #FAFAF8; --fg: #1A1A18; --fg2: #5F5E5A; --border: #D3D1C7;
+    --mono: 'DM Mono', monospace;
+    --display: 'Syne', sans-serif;
+    --serif: 'Lora', serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--display); background: var(--bg); color: var(--fg); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(250,250,248,0.88); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em; color: var(--fg); text-decoration: none; }
+  .nav-logo span { color: var(--coral); }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a { font-size: 0.82rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: var(--fg2); text-decoration: none; transition: color 0.2s; }
+  nav ul a:hover { color: var(--coral); }
+
+  #hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 3rem 4rem; position: relative; overflow: hidden; }
+  .hero-blobs { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(72px); opacity: 0.17; }
+  .blob-1 { width: 520px; height: 520px; background: var(--coral); top: -120px; right: -80px; }
+  .blob-2 { width: 380px; height: 380px; background: var(--purple); bottom: -40px; left: -60px; }
+  .blob-3 { width: 280px; height: 280px; background: var(--teal); top: 45%; right: 22%; }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--mono); font-size: 0.78rem;
+    background: var(--teal-l); color: var(--teal);
+    border: 1px solid #9FE1CB; border-radius: 999px;
+    padding: 0.35rem 1rem; margin-bottom: 2rem;
+  }
+  .hero-tag::before { content: '●'; font-size: 0.55rem; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  h1 { font-size: clamp(2.8rem, 7.5vw, 6rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
+  h1 em { font-style: italic; font-family: var(--serif); color: var(--coral); }
+  .hero-sub { font-size: 1.1rem; font-weight: 400; color: var(--fg2); max-width: 560px; line-height: 1.65; margin-bottom: 2.5rem; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .btn { display: inline-block; padding: 0.85rem 2rem; font-family: var(--display); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; border-radius: 999px; transition: transform 0.15s, box-shadow 0.15s; cursor: pointer; border: none; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+  .btn-primary { background: var(--fg); color: var(--bg); }
+  .btn-outline { background: transparent; color: var(--fg); border: 1.5px solid var(--border); }
+  .btn-outline:hover { border-color: var(--fg); }
+  .hero-chips { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .chip { font-family: var(--mono); font-size: 0.7rem; padding: 0.3rem 0.8rem; border-radius: 999px; border: 1px solid; }
+  .chip-coral  { color: var(--coral); border-color: #F0997B; background: var(--coral-l); }
+  .chip-purple { color: #534AB7; border-color: #AFA9EC; background: var(--purple-l); }
+  .chip-teal   { color: #0F6E56; border-color: #5DCAA5; background: var(--teal-l); }
+  .chip-amber  { color: var(--amber); border-color: #EF9F27; background: var(--amber-l); }
+  .chip-pink   { color: #993556; border-color: #ED93B1; background: var(--pink-l); }
+  .chip-blue   { color: #185FA5; border-color: #85B7EB; background: var(--blue-l); }
+
+  section { padding: 6rem 3rem; }
+  .section-label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 1rem; }
+  .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 3rem; }
+  .section-title em { font-style: italic; font-family: var(--serif); }
+
+  #about { background: var(--fg); color: var(--bg); }
+  #about .section-label { color: #888780; }
+  #about .section-title { color: var(--bg); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { font-size: 1.05rem; line-height: 1.75; color: #B4B2A9; margin-bottom: 1.25rem; }
+  .about-text p strong { color: var(--coral); font-weight: 700; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .stat-card { border: 1px solid #3a3a38; border-radius: 16px; padding: 1.5rem; }
+  .stat-num { font-size: 2.6rem; font-weight: 800; line-height: 1; margin-bottom: 0.4rem; }
+  .stat-label { font-size: 0.75rem; font-family: var(--mono); color: #888780; }
+  .stat-card:nth-child(1) .stat-num { color: var(--coral); }
+  .stat-card:nth-child(2) .stat-num { color: var(--purple); }
+  .stat-card:nth-child(3) .stat-num { color: var(--teal); }
+  .stat-card:nth-child(4) .stat-num { color: var(--amber); }
+
+  #skills { background: var(--bg); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1.5rem; }
+  .skill-card { border: 1px solid var(--border); border-radius: 20px; padding: 1.75rem; background: white; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
+  .skill-card::before { content: ''; position: absolute; inset: 0; opacity: 0.04; border-radius: inherit; }
+  .skill-card:nth-child(1)::before { background: var(--coral); }
+  .skill-card:nth-child(2)::before { background: var(--purple); }
+  .skill-card:nth-child(3)::before { background: var(--teal); }
+  .skill-card:nth-child(4)::before { background: var(--amber); }
+  .skill-card:nth-child(5)::before { background: var(--pink); }
+  .skill-card:nth-child(6)::before { background: var(--blue); }
+  .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+  .skill-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+  .skill-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { font-family: var(--mono); font-size: 0.68rem; padding: 0.2rem 0.6rem; border-radius: 999px; border: 1px solid; }
+  .skill-card:nth-child(1) .tag { color: var(--coral);  border-color: #F0997B; background: var(--coral-l); }
+  .skill-card:nth-child(2) .tag { color: #534AB7;       border-color: #AFA9EC; background: var(--purple-l); }
+  .skill-card:nth-child(3) .tag { color: #0F6E56;       border-color: #5DCAA5; background: var(--teal-l); }
+  .skill-card:nth-child(4) .tag { color: var(--amber);  border-color: #EF9F27; background: var(--amber-l); }
+  .skill-card:nth-child(5) .tag { color: #993556;       border-color: #ED93B1; background: var(--pink-l); }
+  .skill-card:nth-child(6) .tag { color: #185FA5;       border-color: #85B7EB; background: var(--blue-l); }
+
+  #experience { background: #F5F3EE; }
+  .timeline { position: relative; max-width: 780px; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--border); }
+  .tl-item { padding: 0 0 3rem 2.5rem; position: relative; }
+  .tl-dot { position: absolute; left: -6px; top: 5px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid #F5F3EE; }
+  .tl-item:nth-child(1) .tl-dot { background: var(--coral); }
+  .tl-item:nth-child(2) .tl-dot { background: var(--purple); }
+  .tl-date { font-family: var(--mono); font-size: 0.72rem; color: var(--fg2); margin-bottom: 0.4rem; }
+  .tl-role { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .tl-company { font-size: 0.88rem; color: var(--fg2); margin-bottom: 0.8rem; }
+  .tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .tl-bullets li { font-size: 0.9rem; line-height: 1.6; color: var(--fg2); padding-left: 1.1rem; position: relative; }
+  .tl-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--coral); font-family: var(--mono); font-size: 0.75rem; top: 3px; }
+
+  #projects { background: var(--bg); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .project-card { border: 1px solid var(--border); border-radius: 20px; padding: 2rem; background: white; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.09); }
+  .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+  .project-badge { font-family: var(--mono); font-size: 0.65rem; padding: 0.22rem 0.65rem; border-radius: 999px; border: 1px solid; }
+  .project-card:nth-child(1) .project-badge { color: var(--coral); border-color: #F0997B; background: var(--coral-l); }
+  .project-card:nth-child(2) .project-badge { color: #534AB7;      border-color: #AFA9EC; background: var(--purple-l); }
+  .project-card:nth-child(3) .project-badge { color: #0F6E56;      border-color: #5DCAA5; background: var(--teal-l); }
+  .project-card:nth-child(4) .project-badge { color: var(--amber); border-color: #EF9F27; background: var(--amber-l); }
+  .project-emoji { font-size: 2rem; }
+  .project-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .project-desc { font-size: 0.88rem; line-height: 1.65; color: var(--fg2); flex: 1; margin-bottom: 0.75rem; }
+  .project-highlight { font-family: var(--mono); font-size: 0.7rem; color: var(--teal); margin-bottom: 1.25rem; }
+  .project-footer { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .project-link { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; text-decoration: none; color: var(--fg2); border: 1px solid var(--border); padding: 0.35rem 0.9rem; border-radius: 999px; transition: all 0.15s; }
+  .project-link:hover { color: var(--fg); border-color: var(--fg); }
+
+  #education { background: var(--fg); color: var(--bg); }
+  #education .section-label { color: #888780; }
+  #education .section-title { color: var(--bg); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+  .edu-card { border: 1px solid #3a3a38; border-radius: 20px; padding: 2rem; }
+  .edu-degree { font-size: 1rem; font-weight: 700; color: var(--bg); margin-bottom: 0.3rem; }
+  .edu-school { font-size: 0.85rem; color: #888780; margin-bottom: 1rem; }
+  .edu-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .edu-badge { font-family: var(--mono); font-size: 0.68rem; padding: 0.25rem 0.7rem; border-radius: 999px; }
+  .edu-card:nth-child(1) .edu-badge-gpa  { background: var(--coral-l);  color: #993C1D; }
+  .edu-card:nth-child(1) .edu-badge-date { background: #2c2c2a; color: #888780; }
+  .edu-card:nth-child(2) .edu-badge-gpa  { background: var(--purple-l); color: #3C3489; }
+  .edu-card:nth-child(2) .edu-badge-date { background: #2c2c2a; color: #888780; }
+  .cert-card { border: 1px solid #3a3a38; border-radius: 16px; padding: 1.25rem 1.5rem; display: inline-flex; align-items: center; gap: 1rem; }
+  .cert-name { font-size: 0.9rem; font-weight: 700; color: var(--bg); }
+  .cert-issuer { font-size: 0.75rem; font-family: var(--mono); color: #888780; }
+
+  #contact { background: var(--bg); text-align: center; padding: 8rem 3rem; position: relative; overflow: hidden; }
+  .cblob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.1; width: 400px; height: 400px; background: var(--pink); top: -100px; left: 50%; transform: translateX(-50%); pointer-events: none; }
+  #contact .section-label, #contact .section-title { position: relative; z-index: 1; }
+  .contact-sub { font-size: 1.05rem; color: var(--fg2); max-width: 480px; margin: 0 auto 3rem; line-height: 1.6; position: relative; z-index: 1; }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .contact-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--display); font-size: 0.88rem; font-weight: 700; text-decoration: none; padding: 0.85rem 1.75rem; border-radius: 999px; border: 1.5px solid; transition: all 0.15s; }
+  .contact-btn-primary { background: var(--coral); color: white; border-color: var(--coral); }
+  .contact-btn-primary:hover { background: #993C1D; border-color: #993C1D; }
+  .contact-btn-ghost { color: var(--fg); border-color: var(--border); }
+  .contact-btn-ghost:hover { border-color: var(--fg); }
+
+  footer { background: var(--fg); border-top: 1px solid #2c2c2a; text-align: center; padding: 2rem 3rem; }
+  footer p { font-family: var(--mono); font-size: 0.72rem; color: #5F5E5A; }
+  footer span { color: var(--coral); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { gap: 0.75rem; }
+    nav ul a { font-size: 0.7rem; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .about-grid, .edu-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">MP<span>.</span></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">Open to opportunities · F-1 OPT (STEM-eligible)</div>
+    <h1>Madhu<br><em>Priya</em><br>Pulletikurthi</h1>
+    <p class="hero-sub">
+      Data Scientist &amp; AI/ML Engineer specializing in GenAI, agentic architectures,
+      and production-grade ML pipelines. I turn messy data into intelligent systems
+      that work in the real world.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View my work</a>
+      <a href="mailto:madhup.pulletikurthi@gmail.com" class="btn btn-outline">Get in touch</a>
+    </div>
+    <div class="hero-chips">
+      <span class="chip chip-coral">RAG Pipelines</span>
+      <span class="chip chip-purple">LangChain · LangGraph</span>
+      <span class="chip chip-teal">LLM Evaluation</span>
+      <span class="chip chip-amber">PyTorch · TensorFlow</span>
+      <span class="chip chip-pink">Vector Search · FAISS</span>
+      <span class="chip chip-blue">AWS · Docker · MLOps</span>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <p class="section-label">// about me</p>
+  <div class="about-grid">
+    <div>
+      <h2 class="section-title">Builder of<br><em>intelligent</em><br>systems.</h2>
+      <div class="about-text">
+        <p>
+          I'm a Data Scientist &amp; AI/ML Engineer pursuing my <strong>M.S. in Data Science at UMBC</strong>
+          (GPA: 4.0), with a deep focus on Generative AI, agentic pipelines, and production-grade ML systems.
+        </p>
+        <p>
+          From designing RAG architectures and agentic speech pipelines to shipping containerized
+          ML workflows at KPMG, I thrive at the intersection of research and engineering — turning
+          ideas into things that actually run in production.
+        </p>
+        <p>
+          My ML work led to a <strong>peer-reviewed publication</strong> and a
+          <strong>patent filing</strong> with the India Patent Office. I also teach ML &amp; Data
+          Science at UMBC, guiding students through the full model lifecycle.
+        </p>
+      </div>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">4.0</div>
+        <div class="stat-label">GPA at UMBC</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">shipped AI projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-label">patent filed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">students mentored</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <p class="section-label">// what i work with</p>
+  <h2 class="section-title">Skills &amp;<br><em>tools</em></h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">GenAI &amp; Agentic AI</div>
+      <div class="skill-tags">
+        <span class="tag">RAG Pipelines</span>
+        <span class="tag">LangChain</span>
+        <span class="tag">LangGraph</span>
+        <span class="tag">Prompt Engineering</span>
+        <span class="tag">LLM Evaluation</span>
+        <span class="tag">Claude SDK</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🧠</div>
+      <div class="skill-name">LLMs &amp; Embeddings</div>
+      <div class="skill-tags">
+        <span class="tag">OpenAI GPT-4</span>
+        <span class="tag">LLaMA 3</span>
+        <span class="tag">HuggingFace</span>
+        <span class="tag">FAISS</span>
+        <span class="tag">Vector Search</span>
+        <span class="tag">Semantic Search</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">ML &amp; Data Science</div>
+      <div class="skill-tags">
+        <span class="tag">PyTorch</span>
+        <span class="tag">TensorFlow</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">XGBoost</span>
+        <span class="tag">SMOTE</span>
+        <span class="tag">HDBSCAN</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-name">Cloud &amp; MLOps</div>
+      <div class="skill-tags">
+        <span class="tag">AWS EC2/S3/Lambda</span>
+        <span class="tag">Docker</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">Flask</span>
+        <span class="tag">Gradio</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">Data &amp; Pipelines</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">ETL Pipelines</span>
+        <span class="tag">Apache Solr</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📈</div>
+      <div class="skill-name">Visualization &amp; BI</div>
+      <div class="skill-tags">
+        <span class="tag">Tableau</span>
+        <span class="tag">Jupyter</span>
+        <span class="tag">Matplotlib</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">PostgreSQL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <p class="section-label">// where i've been</p>
+  <h2 class="section-title">Work<br><em>experience</em></h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">October 2024 — Present</div>
+      <div class="tl-role">Graduate Teaching Assistant — ML &amp; Data Science</div>
+      <div class="tl-company">University of Maryland, Baltimore County · Baltimore, MD</div>
+      <ul class="tl-bullets">
+        <li>Guided 20 students through the full ML lifecycle — data preprocessing, feature engineering, model training, evaluation, and deployment — reviewing 48+ Python implementations per semester in Scikit-learn, TensorFlow, and PyTorch.</li>
+        <li>Diagnosed data leakage, feature scaling errors, and hyperparameter misconfigurations, directly improving the reliability of student-built AI solutions.</li>
+        <li>Evaluated 20+ SQL submissions per cycle in MySQL and PostgreSQL, reinforcing data governance and pipeline integrity fundamentals.</li>
+      </ul>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">January 2024 — July 2024</div>
+      <div class="tl-role">Analyst Intern</div>
+      <div class="tl-company">KPMG India · Bengaluru, India</div>
+      <ul class="tl-bullets">
+        <li>Built Python &amp; SQL ETL pipelines integrated with Apache Solr and REST APIs to automate data ingestion for client analytics workflows, reducing manual preparation overhead.</li>
+        <li>Developed baseline predictive models in Pandas and Scikit-learn to surface forecasting trends for client decision-making.</li>
+        <li>Containerized analytics workflows with Docker to ensure environment reproducibility, applying MLOps practices from development to production-ready deployment.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="section-label">// things i've built</p>
+  <h2 class="section-title">Featured<br><em>projects</em></h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-emoji">🎙️</div>
+        <span class="project-badge">Agentic AI · Speech</span>
+      </div>
+      <div class="project-title">Voice-Based AI Interviewer</div>
+      <div class="project-desc">
+        End-to-end agentic speech pipeline integrating faster-whisper (STT), LLM inference,
+        and TTS. Built from proof-of-concept to a scalable modular Streamlit deployment,
+        with multi-turn conversation and responsible AI evaluation logic.
+      </div>
+      <div class="project-highlight">⚡ Validated transcription accuracy across diverse voice interaction scenarios</div>
+      <div class="project-footer">
+        <a href="https://github.com" class="project-link" target="_blank">↗ GitHub</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-emoji">🥗</div>
+        <span class="project-badge">RAG · GenAI · Clustering</span>
+      </div>
+      <div class="project-title">AI-Powered Meal Planner</div>
+      <div class="project-desc">
+        GenAI solution using RAG with Llama-3 and the USDA FoodData Central API. Applied
+        KMeans clustering on macronutrient embeddings and built a constraint-aware retrieval
+        layer filtered by calorie targets and dietary preferences.
+      </div>
+      <div class="project-highlight">⚡ Semantic macronutrient clustering drives personalized content generation</div>
+      <div class="project-footer">
+        <a href="https://github.com" class="project-link" target="_blank">↗ GitHub</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-emoji">📺</div>
+        <span class="project-badge">ML Pipeline · NLP</span>
+      </div>
+      <div class="project-title">YouTube Popularity Prediction</div>
+      <div class="project-desc">
+        Engineered structured and text-based features from YouTube Data API metadata to model
+        pre-publication engagement potential. Trained Random Forest and XGBoost models,
+        then applied KMeans &amp; HDBSCAN clustering to map predictions to actionable content tiers.
+      </div>
+      <div class="project-highlight">⚡ Cross-validated ML with unsupervised outcome segmentation</div>
+      <div class="project-footer">
+        <a href="https://github.com" class="project-link" target="_blank">↗ GitHub</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-emoji">🧬</div>
+        <span class="project-badge">ML · Patent · Publication</span>
+      </div>
+      <div class="project-title">Dyslexia Diagnosis via ML</div>
+      <div class="project-desc">
+        Random Forest classifier with SMOTE-based class balancing and hyperparameter tuning
+        on behavioral assessment data. Achieved 95.2% diagnostic accuracy. Resulted in a
+        peer-reviewed publication and an India Patent Office filing.
+      </div>
+      <div class="project-highlight">⚡ 95.2% accuracy · TIJER publication · Patent No. 202341084582 A</div>
+      <div class="project-footer">
+        <a href="#" class="project-link">↗ Publication</a>
+        <a href="#" class="project-link">↗ Patent</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <p class="section-label">// academic background</p>
+  <h2 class="section-title">Education &amp;<br><em>credentials</em></h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-degree">M.S., Data Science</div>
+      <div class="edu-school">University of Maryland, Baltimore County (UMBC)</div>
+      <div class="edu-meta">
+        <span class="edu-badge edu-badge-gpa">GPA: 4.0 / 4.0</span>
+        <span class="edu-badge edu-badge-date">Aug 2024 – May 2026</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">B.E., Information Science</div>
+      <div class="edu-school">Dayananda Sagar College of Engineering</div>
+      <div class="edu-meta">
+        <span class="edu-badge edu-badge-gpa">GPA: 3.84 / 4.0</span>
+        <span class="edu-badge edu-badge-date">Aug 2020 – May 2024</span>
+      </div>
+    </div>
+  </div>
+  <div class="cert-card">
+    <span style="font-size:1.5rem;">🏆</span>
+    <div>
+      <div class="cert-name">Google Prompting Essentials</div>
+      <div class="cert-issuer">Google · 2024</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="cblob"></div>
+  <p class="section-label">// let's talk</p>
+  <h2 class="section-title">Get in <em>touch</em></h2>
+  <p class="contact-sub">
+    Open to full-time Data Science &amp; AI/ML roles, research collaborations, and interesting
+    GenAI problems. Currently on F-1 OPT (STEM-eligible) · Based in Baltimore, MD.
+  </p>
+  <div class="contact-links">
+    <a href="mailto:madhup.pulletikurthi@gmail.com" class="contact-btn contact-btn-primary">✉ Say hello</a>
+    <a href="https://linkedin.com" class="contact-btn contact-btn-ghost" target="_blank">LinkedIn</a>
+    <a href="https://github.com" class="contact-btn contact-btn-ghost" target="_blank">GitHub</a>
+    <a href="https://portfolio.com" class="contact-btn contact-btn-ghost" target="_blank">Portfolio</a>
+  </div>
+</section>
+
+<footer>
+  <p>Madhu Priya Pulletikurthi <span>·</span> Baltimore, MD <span>·</span> Built with care &amp; deployed on GitHub Pages</p>
+</footer>
+
+</body>
+</html>
