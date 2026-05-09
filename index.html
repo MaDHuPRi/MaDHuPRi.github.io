@@ -41,7 +41,41 @@
   .blob-1 { width: 520px; height: 520px; background: var(--coral); top: -120px; right: -80px; }
   .blob-2 { width: 380px; height: 380px; background: var(--purple); bottom: -40px; left: -60px; }
   .blob-3 { width: 280px; height: 280px; background: var(--teal); top: 45%; right: 22%; }
-  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+  .hero-inner { position: relative; z-index: 1; width: 100%; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4rem; }
+  .hero-content { max-width: 620px; }
+
+  .hero-avatar-wrap { display: flex; flex-direction: column; align-items: center; gap: 1rem; position: relative; }
+  .avatar-ring {
+    width: 340px; height: 340px;
+    position: relative;
+    animation: float 5s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0px); }
+    50%      { transform: translateY(-18px); }
+  }
+  .avatar-ring video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .avatar-badge {
+    position: absolute;
+    font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+    padding: 0.4rem 0.9rem; border-radius: 999px; border: 1px solid;
+    white-space: nowrap; backdrop-filter: blur(8px);
+    animation: float-badge 4s ease-in-out infinite;
+  }
+  .badge-ml  { top: 10%;  left: -60px; color: var(--coral); border-color: #F0997B; background: rgba(250,236,231,0.92); animation-delay: 0s; }
+  .badge-rag { top: 40%;  right: -70px; color: #534AB7; border-color: #AFA9EC; background: rgba(238,237,254,0.92); animation-delay: 1s; }
+  .badge-llm { bottom: 18%; left: -55px; color: #0F6E56; border-color: #5DCAA5; background: rgba(225,245,238,0.92); animation-delay: 2s; }
+  .badge-gpa { bottom: 5%; right: -50px; color: var(--amber); border-color: #EF9F27; background: rgba(250,238,218,0.92); animation-delay: 0.5s; }
+  @keyframes float-badge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-avatar-wrap { order: -1; }
+    .avatar-ring { width: 220px; height: 220px; }
+    .avatar-badge { display: none; }
+  }
   .hero-tag {
     display: inline-flex; align-items: center; gap: 0.5rem;
     font-family: var(--mono); font-size: 0.78rem;
@@ -127,18 +161,92 @@
 
   #projects { background: var(--bg); }
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-  .project-card { border: 1px solid var(--border); border-radius: 20px; padding: 2rem; background: white; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
-  .project-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.09); }
-  .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+
+  .project-card {
+    border: 1px solid var(--border); border-radius: 20px;
+    background: white; display: flex; flex-direction: column;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .project-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.13); }
+
+  .project-preview {
+    width: 100%; height: 180px; position: relative; overflow: hidden;
+    border-radius: 16px 16px 0 0; background: #0f0f0f;
+    flex-shrink: 0; cursor: pointer;
+  }
+  /* videos always visible */
+  .project-preview video {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .demo-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  .preview-label {
+    position: absolute; bottom: 8px; left: 10px;
+    font-family: var(--mono); font-size: 0.62rem;
+    background: rgba(0,0,0,0.55); color: rgba(255,255,255,0.85);
+    padding: 0.2rem 0.6rem; border-radius: 999px;
+  }
+  .preview-expand {
+    position: absolute; top: 8px; right: 10px;
+    font-family: var(--mono); font-size: 0.6rem;
+    background: rgba(0,0,0,0.55); color: rgba(255,255,255,0.8);
+    padding: 0.18rem 0.55rem; border-radius: 999px;
+    pointer-events: none;
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 9000;
+    background: rgba(0,0,0,0.88); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-inner {
+    position: relative; width: min(92vw, 960px);
+    background: #000; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  }
+  .lightbox-inner video { width: 100%; display: block; max-height: 80vh; object-fit: contain; }
+  .lightbox-close {
+    position: absolute; top: 12px; right: 14px;
+    background: rgba(255,255,255,0.12); border: none; color: #fff;
+    font-size: 1.1rem; width: 34px; height: 34px; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s; z-index: 1;
+  }
+  .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+
+  .project-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+  .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
   .project-badge { font-family: var(--mono); font-size: 0.65rem; padding: 0.22rem 0.65rem; border-radius: 999px; border: 1px solid; }
   .project-card:nth-child(1) .project-badge { color: var(--coral); border-color: #F0997B; background: var(--coral-l); }
   .project-card:nth-child(2) .project-badge { color: #534AB7;      border-color: #AFA9EC; background: var(--purple-l); }
   .project-card:nth-child(3) .project-badge { color: #0F6E56;      border-color: #5DCAA5; background: var(--teal-l); }
   .project-card:nth-child(4) .project-badge { color: var(--amber); border-color: #EF9F27; background: var(--amber-l); }
-  .project-emoji { font-size: 2rem; }
-  .project-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
-  .project-desc { font-size: 0.88rem; line-height: 1.65; color: var(--fg2); flex: 1; margin-bottom: 0.75rem; }
-  .project-highlight { font-family: var(--mono); font-size: 0.7rem; color: var(--teal); margin-bottom: 1.25rem; }
+  .project-emoji { font-size: 1.8rem; }
+  .project-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .project-desc { font-size: 0.86rem; line-height: 1.6; color: var(--fg2); flex: 1; margin-bottom: 0.75rem; }
+  .project-highlight { font-family: var(--mono); font-size: 0.68rem; color: var(--teal); margin-bottom: 1rem; }
+
+  .project-stack {
+    display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1rem;
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.35s;
+    opacity: 0;
+  }
+  .project-card:hover .project-stack { max-height: 120px; opacity: 1; }
+  .stack-pill {
+    font-family: var(--mono); font-size: 0.65rem; font-weight: 500;
+    padding: 0.22rem 0.65rem; border-radius: 999px; border: 1px solid; white-space: nowrap;
+    animation: pill-pop 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  @keyframes pill-pop { from{transform:scale(0.6);opacity:0} to{transform:scale(1);opacity:1} }
+  .project-card:nth-child(1) .stack-pill { color: var(--coral); border-color: #F0997B; background: var(--coral-l); }
+  .project-card:nth-child(2) .stack-pill { color: #534AB7;      border-color: #AFA9EC; background: var(--purple-l); }
+  .project-card:nth-child(3) .stack-pill { color: #0F6E56;      border-color: #5DCAA5; background: var(--teal-l); }
+  .project-card:nth-child(4) .stack-pill { color: var(--amber); border-color: #EF9F27; background: var(--amber-l); }
+
   .project-footer { display: flex; gap: 0.6rem; flex-wrap: wrap; }
   .project-link { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; text-decoration: none; color: var(--fg2); border: 1px solid var(--border); padding: 0.35rem 0.9rem; border-radius: 999px; transition: all 0.15s; }
   .project-link:hover { color: var(--fg); border-color: var(--fg); }
@@ -188,6 +296,14 @@
 </head>
 <body>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <video id="lightbox-video" controls muted loop playsinline></video>
+  </div>
+</div>
+
 <nav>
   <a href="#hero" class="nav-logo">MP<span>.</span></a>
   <ul>
@@ -206,25 +322,36 @@
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
   </div>
-  <div class="hero-content">
-    <div class="hero-tag">Open to opportunities · F-1 OPT (STEM-eligible)</div>
-    <h1>Madhu<br><em>Priya</em><br>Pulletikurthi</h1>
-    <p class="hero-sub">
-      Data Scientist &amp; AI/ML Engineer specializing in GenAI, agentic architectures,
-      and production-grade ML pipelines. I turn messy data into intelligent systems
-      that work in the real world.
-    </p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">View my work</a>
-      <a href="mailto:madhup.pulletikurthi@gmail.com" class="btn btn-outline">Get in touch</a>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag">Open to opportunities · F-1 OPT (STEM-eligible)</div>
+      <h1>Madhu<br><em>Priya</em><br>Pulletikurthi</h1>
+      <p class="hero-sub">
+        Data Scientist &amp; AI/ML Engineer specializing in GenAI, agentic architectures,
+        and production-grade ML pipelines. I turn messy data into intelligent systems
+        that work in the real world.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View my work</a>
+        <a href="mailto:madhup.pulletikurthi@gmail.com" class="btn btn-outline">Get in touch</a>
+      </div>
+      <div class="hero-chips">
+        <span class="chip chip-coral">RAG Pipelines</span>
+        <span class="chip chip-purple">LangChain · LangGraph</span>
+        <span class="chip chip-teal">LLM Evaluation</span>
+        <span class="chip chip-amber">PyTorch · TensorFlow</span>
+        <span class="chip chip-pink">Vector Search · FAISS</span>
+        <span class="chip chip-blue">AWS · Docker · MLOps</span>
+      </div>
     </div>
-    <div class="hero-chips">
-      <span class="chip chip-coral">RAG Pipelines</span>
-      <span class="chip chip-purple">LangChain · LangGraph</span>
-      <span class="chip chip-teal">LLM Evaluation</span>
-      <span class="chip chip-amber">PyTorch · TensorFlow</span>
-      <span class="chip chip-pink">Vector Search · FAISS</span>
-      <span class="chip chip-blue">AWS · Docker · MLOps</span>
+    <div class="hero-avatar-wrap">
+      <div class="avatar-ring">
+        <span class="avatar-badge badge-ml">🤖 ML Engineer</span>
+        <span class="avatar-badge badge-rag">✨ RAG Expert</span>
+        <span class="avatar-badge badge-llm">🧠 LLM Fine-tuning</span>
+        <span class="avatar-badge badge-gpa">🏆 GPA 4.0</span>
+        <video src="avatar.mp4" autoplay muted loop playsinline></video>
+      </div>
     </div>
   </div>
 </section>
@@ -235,39 +362,16 @@
     <div>
       <h2 class="section-title">Builder of<br><em>intelligent</em><br>systems.</h2>
       <div class="about-text">
-        <p>
-          I'm a Data Scientist &amp; AI/ML Engineer pursuing my <strong>M.S. in Data Science at UMBC</strong>
-          (GPA: 4.0), with a deep focus on Generative AI, agentic pipelines, and production-grade ML systems.
-        </p>
-        <p>
-          From designing RAG architectures and agentic speech pipelines to shipping containerized
-          ML workflows at KPMG, I thrive at the intersection of research and engineering — turning
-          ideas into things that actually run in production.
-        </p>
-        <p>
-          My ML work led to a <strong>peer-reviewed publication</strong> and a
-          <strong>patent filing</strong> with the India Patent Office. I also teach ML &amp; Data
-          Science at UMBC, guiding students through the full model lifecycle.
-        </p>
+        <p>I'm a Data Scientist &amp; AI/ML Engineer pursuing my <strong>M.S. in Data Science at UMBC</strong> (GPA: 4.0), with a deep focus on Generative AI, agentic pipelines, and production-grade ML systems.</p>
+        <p>From designing RAG architectures and agentic speech pipelines to shipping containerized ML workflows at KPMG, I thrive at the intersection of research and engineering — turning ideas into things that actually run in production.</p>
+        <p>My ML work led to a <strong>peer-reviewed publication</strong> and a <strong>patent filing</strong> with the India Patent Office. I also teach ML &amp; Data Science at UMBC, guiding students through the full model lifecycle.</p>
       </div>
     </div>
     <div class="about-stats">
-      <div class="stat-card">
-        <div class="stat-num">4.0</div>
-        <div class="stat-label">GPA at UMBC</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">4+</div>
-        <div class="stat-label">shipped AI projects</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">1</div>
-        <div class="stat-label">patent filed</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">20+</div>
-        <div class="stat-label">students mentored</div>
-      </div>
+      <div class="stat-card"><div class="stat-num">4.0</div><div class="stat-label">GPA at UMBC</div></div>
+      <div class="stat-card"><div class="stat-num">4+</div><div class="stat-label">shipped AI projects</div></div>
+      <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">patent filed</div></div>
+      <div class="stat-card"><div class="stat-num">20+</div><div class="stat-label">students mentored</div></div>
     </div>
   </div>
 </section>
@@ -276,77 +380,12 @@
   <p class="section-label">// what i work with</p>
   <h2 class="section-title">Skills &amp;<br><em>tools</em></h2>
   <div class="skills-grid">
-    <div class="skill-card">
-      <div class="skill-icon">🤖</div>
-      <div class="skill-name">GenAI &amp; Agentic AI</div>
-      <div class="skill-tags">
-        <span class="tag">RAG Pipelines</span>
-        <span class="tag">LangChain</span>
-        <span class="tag">LangGraph</span>
-        <span class="tag">Prompt Engineering</span>
-        <span class="tag">LLM Evaluation</span>
-        <span class="tag">Claude SDK</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">🧠</div>
-      <div class="skill-name">LLMs &amp; Embeddings</div>
-      <div class="skill-tags">
-        <span class="tag">OpenAI GPT-4</span>
-        <span class="tag">LLaMA 3</span>
-        <span class="tag">HuggingFace</span>
-        <span class="tag">FAISS</span>
-        <span class="tag">Vector Search</span>
-        <span class="tag">Semantic Search</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">📊</div>
-      <div class="skill-name">ML &amp; Data Science</div>
-      <div class="skill-tags">
-        <span class="tag">PyTorch</span>
-        <span class="tag">TensorFlow</span>
-        <span class="tag">Scikit-learn</span>
-        <span class="tag">XGBoost</span>
-        <span class="tag">SMOTE</span>
-        <span class="tag">HDBSCAN</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">☁️</div>
-      <div class="skill-name">Cloud &amp; MLOps</div>
-      <div class="skill-tags">
-        <span class="tag">AWS EC2/S3/Lambda</span>
-        <span class="tag">Docker</span>
-        <span class="tag">REST APIs</span>
-        <span class="tag">Streamlit</span>
-        <span class="tag">Flask</span>
-        <span class="tag">Gradio</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">🗄️</div>
-      <div class="skill-name">Data &amp; Pipelines</div>
-      <div class="skill-tags">
-        <span class="tag">Python</span>
-        <span class="tag">SQL</span>
-        <span class="tag">Pandas</span>
-        <span class="tag">NumPy</span>
-        <span class="tag">ETL Pipelines</span>
-        <span class="tag">Apache Solr</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">📈</div>
-      <div class="skill-name">Visualization &amp; BI</div>
-      <div class="skill-tags">
-        <span class="tag">Tableau</span>
-        <span class="tag">Jupyter</span>
-        <span class="tag">Matplotlib</span>
-        <span class="tag">MySQL</span>
-        <span class="tag">PostgreSQL</span>
-      </div>
-    </div>
+    <div class="skill-card"><div class="skill-icon">🤖</div><div class="skill-name">GenAI &amp; Agentic AI</div><div class="skill-tags"><span class="tag">RAG Pipelines</span><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">Prompt Engineering</span><span class="tag">LLM Evaluation</span><span class="tag">Claude SDK</span></div></div>
+    <div class="skill-card"><div class="skill-icon">🧠</div><div class="skill-name">LLMs &amp; Embeddings</div><div class="skill-tags"><span class="tag">OpenAI GPT-4</span><span class="tag">LLaMA 3</span><span class="tag">HuggingFace</span><span class="tag">FAISS</span><span class="tag">Vector Search</span><span class="tag">Semantic Search</span></div></div>
+    <div class="skill-card"><div class="skill-icon">📊</div><div class="skill-name">ML &amp; Data Science</div><div class="skill-tags"><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">Scikit-learn</span><span class="tag">XGBoost</span><span class="tag">SMOTE</span><span class="tag">HDBSCAN</span></div></div>
+    <div class="skill-card"><div class="skill-icon">☁️</div><div class="skill-name">Cloud &amp; MLOps</div><div class="skill-tags"><span class="tag">AWS EC2/S3/Lambda</span><span class="tag">Docker</span><span class="tag">REST APIs</span><span class="tag">Streamlit</span><span class="tag">Flask</span><span class="tag">Gradio</span></div></div>
+    <div class="skill-card"><div class="skill-icon">🗄️</div><div class="skill-name">Data &amp; Pipelines</div><div class="skill-tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">ETL Pipelines</span><span class="tag">Apache Solr</span></div></div>
+    <div class="skill-card"><div class="skill-icon">📈</div><div class="skill-name">Visualization &amp; BI</div><div class="skill-tags"><span class="tag">Tableau</span><span class="tag">Jupyter</span><span class="tag">Matplotlib</span><span class="tag">MySQL</span><span class="tag">PostgreSQL</span></div></div>
   </div>
 </section>
 
@@ -383,71 +422,109 @@
   <p class="section-label">// things i've built</p>
   <h2 class="section-title">Featured<br><em>projects</em></h2>
   <div class="projects-grid">
+
+    <!-- CARD 1: Voice AI Interviewer (canvas demo) -->
     <div class="project-card">
-      <div class="project-header">
-        <div class="project-emoji">🎙️</div>
-        <span class="project-badge">Agentic AI · Speech</span>
+      <div class="project-preview" data-video-src="interview.webm">
+  
+        <video src="interview.webm" muted loop playsinline autoplay></video>
+        <span class="preview-label">▶ live demo</span>
+        <span class="preview-expand">⛶ expand</span>
       </div>
-      <div class="project-title">Voice-Based AI Interviewer</div>
-      <div class="project-desc">
-        End-to-end agentic speech pipeline integrating faster-whisper (STT), LLM inference,
-        and TTS. Built from proof-of-concept to a scalable modular Streamlit deployment,
-        with multi-turn conversation and responsible AI evaluation logic.
-      </div>
-      <div class="project-highlight">⚡ Validated transcription accuracy across diverse voice interaction scenarios</div>
-      <div class="project-footer">
-        <a href="https://github.com" class="project-link" target="_blank">↗ GitHub</a>
+      <div class="project-body">
+        <div class="project-header">
+          <div class="project-emoji">🎙️</div>
+          <span class="project-badge">Agentic AI · Speech</span>
+        </div>
+        <div class="project-title">Voice-Based AI Interviewer</div>
+        <div class="project-desc">End-to-end agentic speech pipeline integrating faster-whisper (STT), LLM inference, and TTS — from proof-of-concept to scalable Streamlit deployment with multi-turn conversation.</div>
+        <div class="project-highlight">⚡ Validated transcription across diverse voice scenarios</div>
+        <div class="project-stack">
+          <span class="stack-pill" style="animation-delay:0.00s">faster-whisper</span><span class="stack-pill" style="animation-delay:0.05s">LangGraph</span>
+          <span class="stack-pill" style="animation-delay:0.10s">LLaMA 3</span><span class="stack-pill" style="animation-delay:0.15s">TTS</span>
+          <span class="stack-pill" style="animation-delay:0.20s">Streamlit</span><span class="stack-pill" style="animation-delay:0.25s">Python</span>
+        </div>
+        <div class="project-footer"><a href="https://github.com" class="project-link" target="_blank">↗ GitHub</a></div>
       </div>
     </div>
+
+    <!-- CARD 2: Meal Planner (video) -->
     <div class="project-card">
-      <div class="project-header">
-        <div class="project-emoji">🥗</div>
-        <span class="project-badge">RAG · GenAI · Clustering</span>
+      <div class="project-preview" data-video-src="mealplanner-demo.webm">
+        <video src="mealplanner.webm" muted loop playsinline autoplay></video>
+        <span class="preview-label">▶ live demo</span>
+        <span class="preview-expand">⛶ expand</span>
       </div>
-      <div class="project-title">AI-Powered Meal Planner</div>
-      <div class="project-desc">
-        GenAI solution using RAG with Llama-3 and the USDA FoodData Central API. Applied
-        KMeans clustering on macronutrient embeddings and built a constraint-aware retrieval
-        layer filtered by calorie targets and dietary preferences.
-      </div>
-      <div class="project-highlight">⚡ Semantic macronutrient clustering drives personalized content generation</div>
-      <div class="project-footer">
-        <a href="https://github.com" class="project-link" target="_blank">↗ GitHub</a>
+      <div class="project-body">
+        <div class="project-header">
+          <div class="project-emoji">🥗</div>
+          <span class="project-badge">RAG · GenAI · Clustering</span>
+        </div>
+        <div class="project-title">AI-Powered Meal Planner</div>
+        <div class="project-desc">RAG pipeline with Llama-3 + USDA FoodData API. KMeans clustering on macronutrient embeddings with a constraint-aware retrieval layer for personalized meal generation.</div>
+        <div class="project-highlight">⚡ Semantic clustering drives personalized content</div>
+        <div class="project-stack">
+          <span class="stack-pill" style="animation-delay:0.00s">LLaMA 3</span><span class="stack-pill" style="animation-delay:0.05s">RAG</span>
+          <span class="stack-pill" style="animation-delay:0.10s">FAISS</span><span class="stack-pill" style="animation-delay:0.15s">KMeans</span>
+          <span class="stack-pill" style="animation-delay:0.20s">LangChain</span><span class="stack-pill" style="animation-delay:0.25s">Streamlit</span>
+        </div>
+        <div class="project-footer"><a href="https://github.com" class="project-link" target="_blank">↗ GitHub</a></div>
       </div>
     </div>
+
+    <!-- CARD 3: YouTube Prediction (canvas demo) -->
     <div class="project-card">
-      <div class="project-header">
-        <div class="project-emoji">📺</div>
-        <span class="project-badge">ML Pipeline · NLP</span>
+      <div class="project-preview" data-video-src="youtube.webm">
+        <video src="youtube.webm" muted loop playsinline autoplay></video>
+        <span class="preview-label">▶ live demo</span>
+        <span class="preview-expand">⛶ expand</span>
       </div>
-      <div class="project-title">YouTube Popularity Prediction</div>
-      <div class="project-desc">
-        Engineered structured and text-based features from YouTube Data API metadata to model
-        pre-publication engagement potential. Trained Random Forest and XGBoost models,
-        then applied KMeans &amp; HDBSCAN clustering to map predictions to actionable content tiers.
-      </div>
-      <div class="project-highlight">⚡ Cross-validated ML with unsupervised outcome segmentation</div>
-      <div class="project-footer">
-        <a href="https://github.com" class="project-link" target="_blank">↗ GitHub</a>
+      <div class="project-body">
+        <div class="project-header">
+          <div class="project-emoji">📺</div>
+          <span class="project-badge">ML Pipeline · NLP</span>
+        </div>
+        <div class="project-title">YouTube Popularity Prediction</div>
+        <div class="project-desc">Structured + text features from YouTube Data API. Random Forest and XGBoost models, then KMeans &amp; HDBSCAN clustering to map predictions to actionable content tiers.</div>
+        <div class="project-highlight">⚡ Cross-validated ML with unsupervised segmentation</div>
+        <div class="project-stack">
+          <span class="stack-pill" style="animation-delay:0.00s">XGBoost</span><span class="stack-pill" style="animation-delay:0.05s">Random Forest</span>
+          <span class="stack-pill" style="animation-delay:0.10s">HDBSCAN</span><span class="stack-pill" style="animation-delay:0.15s">KMeans</span>
+          <span class="stack-pill" style="animation-delay:0.20s">Pandas</span><span class="stack-pill" style="animation-delay:0.25s">YouTube API</span>
+        </div>
+        <div class="project-footer"><a href="https://github.com" class="project-link" target="_blank">↗ GitHub</a>
+        <a href="https://youtubepopularity.streamlit.app" class="project-link" target="_blank">↗ Live App</a></div>
       </div>
     </div>
+
+    <!-- CARD 4: Dyslexia ML (video) -->
     <div class="project-card">
-      <div class="project-header">
-        <div class="project-emoji">🧬</div>
-        <span class="project-badge">ML · Patent · Publication</span>
+      <div class="project-preview" data-video-src="dyslexia-demo.webm">
+        <video src="dyslexia-demo.webm" muted loop playsinline autoplay></video>
+        <span class="preview-label">▶ live demo</span>
+        <span class="preview-expand">⛶ expand</span>
       </div>
-      <div class="project-title">Dyslexia Diagnosis via ML</div>
-      <div class="project-desc">
-        Random Forest classifier with SMOTE-based class balancing and hyperparameter tuning
-        on behavioral assessment data. Achieved 95.2% diagnostic accuracy. Resulted in a
-        peer-reviewed publication and an India Patent Office filing.
-      </div>
-      <div class="project-highlight">⚡ 95.2% accuracy · TIJER publication · Patent No. 202341084582 A</div>
-      <div class="project-footer">
-        <a href="#" class="project-link">↗ Publication</a>
-        <a href="#" class="project-link">↗ Patent</a>
+      <div class="project-body">
+        <div class="project-header">
+          <div class="project-emoji">🧬</div>
+          <span class="project-badge">ML · Patent · Publication</span>
+        </div>
+        <div class="project-title">Dyslexia Diagnosis via ML</div>
+        <div class="project-desc">Random Forest with SMOTE class balancing and hyperparameter tuning on behavioral data. 95.2% diagnostic accuracy — peer-reviewed publication + India patent filed.</div>
+        <div class="project-highlight">⚡ 95.2% accuracy · TIJER · Patent No. 202341084582 A</div>
+        <div class="project-stack">
+          <span class="stack-pill" style="animation-delay:0.00s">Random Forest</span><span class="stack-pill" style="animation-delay:0.05s">SMOTE</span>
+          <span class="stack-pill" style="animation-delay:0.10s">Scikit-learn</span><span class="stack-pill" style="animation-delay:0.15s">Pandas</span>
+          <span class="stack-pill" style="animation-delay:0.20s">NumPy</span><span class="stack-pill" style="animation-delay:0.25s">Matplotlib</span>
+        </div>
+        <div class="project-footer">
+          <a href="https://dyslexia-diagnosis-ddqebjp7fbq2x79jpxzwev.streamlit.app" class="project-link" target="_blank">↗ Live App</a>
+          <a href="#" class="project-link">↗ Publication</a>
+          <a href="#" class="project-link">↗ Patent</a>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -458,26 +535,17 @@
     <div class="edu-card">
       <div class="edu-degree">M.S., Data Science</div>
       <div class="edu-school">University of Maryland, Baltimore County (UMBC)</div>
-      <div class="edu-meta">
-        <span class="edu-badge edu-badge-gpa">GPA: 4.0 / 4.0</span>
-        <span class="edu-badge edu-badge-date">Aug 2024 – May 2026</span>
-      </div>
+      <div class="edu-meta"><span class="edu-badge edu-badge-gpa">GPA: 4.0 / 4.0</span><span class="edu-badge edu-badge-date">Aug 2024 – May 2026</span></div>
     </div>
     <div class="edu-card">
       <div class="edu-degree">B.E., Information Science</div>
       <div class="edu-school">Dayananda Sagar College of Engineering</div>
-      <div class="edu-meta">
-        <span class="edu-badge edu-badge-gpa">GPA: 3.84 / 4.0</span>
-        <span class="edu-badge edu-badge-date">Aug 2020 – May 2024</span>
-      </div>
+      <div class="edu-meta"><span class="edu-badge edu-badge-gpa">GPA: 3.84 / 4.0</span><span class="edu-badge edu-badge-date">Aug 2020 – May 2024</span></div>
     </div>
   </div>
   <div class="cert-card">
     <span style="font-size:1.5rem;">🏆</span>
-    <div>
-      <div class="cert-name">Google Prompting Essentials</div>
-      <div class="cert-issuer">Google · 2024</div>
-    </div>
+    <div><div class="cert-name">Google Prompting Essentials</div><div class="cert-issuer">Google · 2024</div></div>
   </div>
 </section>
 
@@ -485,21 +553,183 @@
   <div class="cblob"></div>
   <p class="section-label">// let's talk</p>
   <h2 class="section-title">Get in <em>touch</em></h2>
-  <p class="contact-sub">
-    Open to full-time Data Science &amp; AI/ML roles, research collaborations, and interesting
-    GenAI problems. Currently on F-1 OPT (STEM-eligible) · Based in Baltimore, MD.
-  </p>
+  <p class="contact-sub">Open to full-time Data Science &amp; AI/ML roles, research collaborations, and interesting GenAI problems. Currently on F-1 OPT (STEM-eligible) · Based in Baltimore, MD.</p>
   <div class="contact-links">
     <a href="mailto:madhup.pulletikurthi@gmail.com" class="contact-btn contact-btn-primary">✉ Say hello</a>
-    <a href="https://linkedin.com" class="contact-btn contact-btn-ghost" target="_blank">LinkedIn</a>
-    <a href="https://github.com" class="contact-btn contact-btn-ghost" target="_blank">GitHub</a>
-    <a href="https://portfolio.com" class="contact-btn contact-btn-ghost" target="_blank">Portfolio</a>
+    <a href="https://www.linkedin.com/in/madhu-priya-pulletikurthi/" class="contact-btn contact-btn-ghost" target="_blank">LinkedIn</a>
+    <a href="https://github.com/MaDHuPRi" class="contact-btn contact-btn-ghost" target="_blank">GitHub</a>
+    <a href="https://madhupri.github.io" class="contact-btn contact-btn-ghost" target="_blank">Portfolio</a>
   </div>
 </section>
 
 <footer>
   <p>Madhu Priya Pulletikurthi <span>·</span> Baltimore, MD <span>·</span> Built with care &amp; deployed on GitHub Pages</p>
 </footer>
+
+<script>
+/* ── CANVAS DEMOS: always running ── */
+(function() {
+  const demos = {};
+
+  demos.voice = (() => {
+    let raf, t = 0;
+    return {
+      start(canvas, ctx) {
+        const W = canvas.width, H = canvas.height, bars = 48;
+        function draw() {
+          ctx.clearRect(0,0,W,H); ctx.fillStyle='#0a0a0f'; ctx.fillRect(0,0,W,H);
+          const bw = W/bars;
+          for(let i=0;i<bars;i++){
+            const freq=Math.sin(t*0.06+i*0.35)*0.5+0.5, spike=Math.sin(t*0.18+i*0.7)*0.3;
+            const h=(freq+spike)*(H*0.72)+4, hue=200+i*3, alpha=0.55+freq*0.45;
+            ctx.fillStyle=`hsla(${hue},85%,65%,${alpha})`;
+            ctx.beginPath(); ctx.roundRect(i*bw+2,H/2-h/2,bw-3,h,3); ctx.fill();
+          }
+          ctx.fillStyle='rgba(255,255,255,0.18)'; ctx.font='22px serif'; ctx.fillText('🎙️',W-36,28);
+          t++; raf=requestAnimationFrame(draw);
+        }
+        draw();
+      },
+      stop(){ cancelAnimationFrame(raf); }
+    };
+  })();
+
+  demos.chart = (() => {
+    let raf, t = 0;
+    const data=[0.45,0.72,0.38,0.88,0.61,0.95,0.53,0.79];
+    const labels=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'];
+    const clrs=['#D85A30','#7F77DD','#1D9E75','#D4537E','#BA7517','#378ADD','#D85A30','#1D9E75'];
+    return {
+      start(canvas, ctx) {
+        const W=canvas.width, H=canvas.height, pad=28, bw=(W-pad*2)/data.length;
+        function draw() {
+          ctx.clearRect(0,0,W,H); ctx.fillStyle='#0b0b12'; ctx.fillRect(0,0,W,H);
+          for(let g=1;g<=4;g++){const y=pad+(H-pad*2)*(1-g/4);ctx.strokeStyle='rgba(255,255,255,0.07)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pad,y);ctx.lineTo(W-pad,y);ctx.stroke();}
+          const prog=Math.min(1,t/40);
+          data.forEach((val,i)=>{
+            const bh=(H-pad*2)*val*prog, x=pad+i*bw+bw*0.15, bwI=bw*0.7, y=H-pad-bh;
+            const grd=ctx.createLinearGradient(0,y,0,H-pad); grd.addColorStop(0,clrs[i]); grd.addColorStop(1,clrs[i]+'44');
+            ctx.fillStyle=grd; ctx.beginPath(); ctx.roundRect(x,y,bwI,bh,4); ctx.fill();
+            ctx.fillStyle='rgba(255,255,255,0.45)'; ctx.font=`${Math.min(10,bw*0.55)}px 'DM Mono',monospace`; ctx.textAlign='center'; ctx.fillText(labels[i],x+bwI/2,H-pad+14);
+          });
+          t++; if(t>120) t=0; // loop animation
+          raf=requestAnimationFrame(draw);
+        }
+        draw();
+      },
+      stop(){ cancelAnimationFrame(raf); t=0; }
+    };
+  })();
+
+  // Start canvas demos immediately (IntersectionObserver)
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const canvas = e.target;
+      const type = canvas.dataset.demo;
+      const ctx = canvas.getContext('2d');
+      if(e.isIntersecting) {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        demos[type] && demos[type].start(canvas, ctx);
+      } else {
+        demos[type] && demos[type].stop();
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.demo-canvas').forEach(c => observer.observe(c));
+})();
+
+/* ── LIGHTBOX: click preview to expand video ── */
+(function() {
+  const lightbox = document.getElementById('lightbox');
+  const lbVideo  = document.getElementById('lightbox-video');
+  const lbClose  = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('.project-preview').forEach(preview => {
+    preview.addEventListener('click', () => {
+      const videoEl = preview.querySelector('video');
+      if(!videoEl) return; // canvas-only cards — no lightbox
+      const src = videoEl.src || videoEl.getAttribute('src');
+      lbVideo.src = src;
+      lbVideo.muted = false; // unmute in lightbox so they can hear/read
+      lbVideo.currentTime = 0;
+      lbVideo.play().catch(()=>{});
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lbVideo.pause();
+    lbVideo.src = '';
+    document.body.style.overflow = '';
+  }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+})();
+
+/* ── CURSOR + PARTICLES ── */
+(function(){
+  // inject cursor elements
+  const dot = Object.assign(document.createElement('div'), {id:'cursor-dot'});
+  const ring = Object.assign(document.createElement('div'), {id:'cursor-ring'});
+  const pcanvas = Object.assign(document.createElement('canvas'), {id:'particle-canvas'});
+  document.body.append(dot, ring, pcanvas);
+
+  const style = document.createElement('style');
+  style.textContent = `
+    * { cursor: none !important; }
+    #cursor-dot{position:fixed;top:0;left:0;z-index:9999;width:8px;height:8px;border-radius:50%;background:var(--coral);pointer-events:none;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
+    #cursor-ring{position:fixed;top:0;left:0;z-index:9998;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--coral);pointer-events:none;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s,opacity .3s;opacity:.6}
+    body.cursor-hover #cursor-dot{width:12px;height:12px;background:var(--purple)}
+    body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:var(--purple);opacity:.4}
+    body.cursor-click #cursor-dot{width:5px;height:5px}
+    body.cursor-click #cursor-ring{width:60px;height:60px;opacity:.15}
+    #particle-canvas{position:fixed;inset:0;z-index:9990;pointer-events:none;opacity:.75}
+  `;
+  document.head.appendChild(style);
+
+  const ctx = pcanvas.getContext('2d');
+  let mx=-200,my=-200,rx=-200,ry=-200;
+  const particles=[], colors=['#D85A30','#7F77DD','#1D9E75','#D4537E','#BA7517','#378ADD'];
+  function resize(){pcanvas.width=innerWidth;pcanvas.height=innerHeight;}
+  resize(); window.addEventListener('resize',resize);
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';spawnParticle(mx,my);});
+  document.addEventListener('mousedown',()=>document.body.classList.add('cursor-click'));
+  document.addEventListener('mouseup',()=>document.body.classList.remove('cursor-click'));
+  document.querySelectorAll('a,button,.btn,.skill-card,.project-card,.contact-btn,nav ul a').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+  });
+  function spawnParticle(x,y){
+    const size=Math.random()*6+3,angle=Math.random()*Math.PI*2,speed=Math.random()*1.5+0.5;
+    particles.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed-1.2,size,alpha:.9,decay:Math.random()*.02+.018,color:colors[Math.floor(Math.random()*colors.length)],shape:Math.random()>.5?'circle':'star'});
+  }
+  function drawStar(cx,cy,r){ctx.beginPath();for(let i=0;i<5;i++){const a1=(i*4*Math.PI)/5-Math.PI/2,a2=((i*4+2)*Math.PI)/5-Math.PI/2;if(i===0)ctx.moveTo(cx+r*Math.cos(a1),cy+r*Math.sin(a1));else ctx.lineTo(cx+r*Math.cos(a1),cy+r*Math.sin(a1));ctx.lineTo(cx+(r*.45)*Math.cos(a2),cy+(r*.45)*Math.sin(a2));}ctx.closePath();ctx.fill();}
+  function loop(){
+    ctx.clearRect(0,0,pcanvas.width,pcanvas.height);
+    for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.04;p.alpha-=p.decay;if(p.alpha<=0){particles.splice(i,1);continue;}ctx.save();ctx.globalAlpha=p.alpha;ctx.fillStyle=p.color;if(p.shape==='circle'){ctx.beginPath();ctx.arc(p.x,p.y,p.size/2,0,Math.PI*2);ctx.fill();}else{drawStar(p.x,p.y,p.size/2);}ctx.restore();}
+    rx+=(mx-rx)*.10;ry+=(my-ry)*.10;ring.style.left=rx+'px';ring.style.top=ry+'px';
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  /* 3D tilt */
+  document.querySelectorAll('.skill-card,.project-card').forEach(card=>{
+    card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=(e.clientX-cx)/(r.width/2),dy=(e.clientY-cy)/(r.height/2);card.style.transform=`perspective(600px) rotateY(${dx*8}deg) rotateX(${-dy*8}deg) translateY(-4px)`;});
+    card.addEventListener('mouseleave',()=>{card.style.transform='';});
+  });
+
+  /* scroll reveal */
+  const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});},{threshold:.1});
+  document.querySelectorAll('.skill-card,.project-card,.tl-item,.stat-card,.edu-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(32px)';el.style.transition='opacity .55s ease,transform .55s ease';revealObs.observe(el);});
+})();
+</script>
 
 </body>
 </html>
