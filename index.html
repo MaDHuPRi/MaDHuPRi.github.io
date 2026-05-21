@@ -621,7 +621,7 @@
       </div>
 
     </div><!-- /projects-grid -->
-    
+    <div class="carousel-dots" id="proj-dots"></div>
   </div><!-- /carousel-wrap -->
 </section>
 
@@ -825,6 +825,8 @@
 (function(){
   document.querySelectorAll('.skill-card,.project-card').forEach(card=>{
     card.addEventListener('mousemove',e=>{
+      // don't tilt when hovering over links or buttons inside the card
+      if (e.target.closest('a, button')) { card.style.transform=''; return; }
       const r=card.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
       const dx=(e.clientX-cx)/(r.width/2),dy=(e.clientY-cy)/(r.height/2);
       card.style.transform=`perspective(600px) rotateY(${dx*8}deg) rotateX(${-dy*8}deg) translateY(-4px)`;
