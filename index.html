@@ -22,6 +22,11 @@
   html { scroll-behavior: smooth; }
   body { font-family: var(--display); background: var(--bg); color: var(--fg); overflow-x: hidden; }
 
+  /* Orange pointer everywhere */
+  *, *::before, *::after {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'%3E%3Cpath d='M4 2L18 11l-6 1.4L8.5 18z' fill='%23D85A30' stroke='%23fff' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E") 4 2, auto !important;
+  }
+
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -160,7 +165,53 @@
   .tl-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--coral); font-family: var(--mono); font-size: 0.75rem; top: 3px; }
 
   #projects { background: var(--bg); }
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+
+  /* ── CAROUSEL ── */
+  .carousel-wrap { position: relative; }
+  .projects-grid {
+    display: flex !important;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1.25rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    grid-template-columns: unset !important;
+  }
+  .projects-grid::-webkit-scrollbar { display: none; }
+  .projects-grid .project-card {
+    flex: 0 0 calc(33.333% - 1rem);
+    min-width: 300px; max-width: 360px;
+    scroll-snap-align: start;
+  }
+  .carousel-arrow {
+    position: absolute; top: 44%; transform: translateY(-50%);
+    background: white; border: 1.5px solid var(--border);
+    border-radius: 50%; width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--fg);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    transition: all 0.18s; z-index: 10; line-height: 1;
+  }
+  .carousel-arrow:hover { background: var(--coral); color: white; border-color: var(--coral); }
+  .carousel-arrow.prev { left: -22px; }
+  .carousel-arrow.next { right: -22px; }
+  .carousel-arrow:disabled { opacity: 0.22; pointer-events: none; }
+  .carousel-dots {
+    display: flex; justify-content: center; gap: 8px; margin-top: 1.5rem;
+  }
+  .carousel-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--border); border: none; padding: 0;
+    transition: all 0.25s;
+  }
+  .carousel-dot.active { background: var(--coral); width: 22px; border-radius: 4px; }
+  @media (max-width: 900px) {
+    .projects-grid .project-card { flex: 0 0 85vw !important; max-width: 85vw !important; }
+    .carousel-arrow { display: none; }
+  }
 
   .project-card {
     border: 1px solid var(--border); border-radius: 20px;
@@ -173,12 +224,9 @@
   .project-preview {
     width: 100%; height: 180px; position: relative; overflow: hidden;
     border-radius: 16px 16px 0 0; background: #0f0f0f;
-    flex-shrink: 0; cursor: pointer;
+    flex-shrink: 0;
   }
-  /* videos always visible */
-  .project-preview video {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
+  .project-preview video { width: 100%; height: 100%; object-fit: cover; display: block; }
   .demo-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 
   .preview-label {
@@ -212,7 +260,7 @@
     position: absolute; top: 12px; right: 14px;
     background: rgba(255,255,255,0.12); border: none; color: #fff;
     font-size: 1.1rem; width: 34px; height: 34px; border-radius: 50%;
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     transition: background 0.2s; z-index: 1;
   }
   .lightbox-close:hover { background: rgba(255,255,255,0.25); }
@@ -224,6 +272,7 @@
   .project-card:nth-child(2) .project-badge { color: #534AB7;      border-color: #AFA9EC; background: var(--purple-l); }
   .project-card:nth-child(3) .project-badge { color: #0F6E56;      border-color: #5DCAA5; background: var(--teal-l); }
   .project-card:nth-child(4) .project-badge { color: var(--amber); border-color: #EF9F27; background: var(--amber-l); }
+  .project-card:nth-child(5) .project-badge { color: #185FA5;      border-color: #85B7EB; background: var(--blue-l); }
   .project-emoji { font-size: 1.8rem; }
   .project-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
   .project-desc { font-size: 0.86rem; line-height: 1.6; color: var(--fg2); flex: 1; margin-bottom: 0.75rem; }
@@ -246,10 +295,11 @@
   .project-card:nth-child(2) .stack-pill { color: #534AB7;      border-color: #AFA9EC; background: var(--purple-l); }
   .project-card:nth-child(3) .stack-pill { color: #0F6E56;      border-color: #5DCAA5; background: var(--teal-l); }
   .project-card:nth-child(4) .stack-pill { color: var(--amber); border-color: #EF9F27; background: var(--amber-l); }
+  .project-card:nth-child(5) .stack-pill { color: #185FA5;      border-color: #85B7EB; background: var(--blue-l); }
 
   .project-footer { display: flex; gap: 0.6rem; flex-wrap: wrap; }
   .project-link { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; text-decoration: none; color: var(--fg2); border: 1px solid var(--border); padding: 0.35rem 0.9rem; border-radius: 999px; transition: all 0.15s; }
-  .project-link:hover { color: var(--fg); border-color: var(--fg); }
+  .project-link:hover { color: var(--coral); border-color: var(--coral); }
 
   #education { background: var(--fg); color: var(--bg); }
   #education .section-label { color: #888780; }
@@ -277,7 +327,7 @@
   .contact-btn-primary { background: var(--coral); color: white; border-color: var(--coral); }
   .contact-btn-primary:hover { background: #993C1D; border-color: #993C1D; }
   .contact-btn-ghost { color: var(--fg); border-color: var(--border); }
-  .contact-btn-ghost:hover { border-color: var(--fg); }
+  .contact-btn-ghost:hover { border-color: var(--coral); color: var(--coral); }
 
   footer { background: var(--fg); border-top: 1px solid #2c2c2a; text-align: center; padding: 2rem 3rem; }
   footer p { font-family: var(--mono); font-size: 0.72rem; color: #5F5E5A; }
@@ -421,111 +471,158 @@
 <section id="projects">
   <p class="section-label">// things i've built</p>
   <h2 class="section-title">Featured<br><em>projects</em></h2>
-  <div class="projects-grid">
+  <div class="carousel-wrap">
+    <button class="carousel-arrow prev" id="proj-prev" aria-label="Previous">&#8592;</button>
+    <button class="carousel-arrow next" id="proj-next" aria-label="Next">&#8594;</button>
+    <div class="projects-grid" id="proj-grid">
 
-    <!-- CARD 1: Voice AI Interviewer (canvas demo) -->
-    <div class="project-card">
-      <div class="project-preview" data-video-src="interview.webm">
-  
-        <video src="interview.webm" muted loop playsinline autoplay></video>
-        <span class="preview-label">▶ live demo</span>
-        <span class="preview-expand">⛶ expand</span>
-      </div>
-      <div class="project-body">
-        <div class="project-header">
-          <div class="project-emoji">🎙️</div>
-          <span class="project-badge">Agentic AI · Speech</span>
+      <!-- CARD 1: Consequence Map -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="consequence.mp4">
+          <video src="consequence.mp4" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
         </div>
-        <div class="project-title">Voice-Based AI Interviewer</div>
-        <div class="project-desc">End-to-end agentic speech pipeline integrating faster-whisper (STT), LLM inference, and TTS — from proof-of-concept to scalable Streamlit deployment with multi-turn conversation.</div>
-        <div class="project-highlight">⚡ Validated transcription across diverse voice scenarios</div>
-        <div class="project-stack">
-          <span class="stack-pill" style="animation-delay:0.00s">faster-whisper</span><span class="stack-pill" style="animation-delay:0.05s">LangGraph</span>
-          <span class="stack-pill" style="animation-delay:0.10s">LLaMA 3</span><span class="stack-pill" style="animation-delay:0.15s">TTS</span>
-          <span class="stack-pill" style="animation-delay:0.20s">Streamlit</span><span class="stack-pill" style="animation-delay:0.25s">Python</span>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🌊</div>
+            <span class="project-badge">GenAI · Systems Thinking</span>
+          </div>
+          <div class="project-title">Consequence Map</div>
+          <div class="project-desc">Type any decision and get an interactive visual tree of 1st, 2nd, and 3rd order consequences — powered by local AI via Ollama. Nodes are labeled positive, negative, or neutral with color-coded SVG bezier connectors tracing every causal pathway.</div>
+          <div class="project-highlight">⚡ Zero backend · runs entirely in the browser</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">Ollama</span>
+            <span class="stack-pill" style="animation-delay:0.05s">LLaMA 3.2</span>
+            <span class="stack-pill" style="animation-delay:0.10s">Vanilla JS</span>
+            <span class="stack-pill" style="animation-delay:0.15s">SVG</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Systems Thinking</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/consequence-map" class="project-link" target="_blank">↗ GitHub</a>
+          </div>
         </div>
-        <div class="project-footer"><a href="https://github.com" class="project-link" target="_blank">↗ GitHub</a></div>
       </div>
-    </div>
 
-    <!-- CARD 2: Meal Planner (video) -->
-    <div class="project-card">
-      <div class="project-preview" data-video-src="mealplanner-demo.webm">
-        <video src="mealplanner.webm" muted loop playsinline autoplay></video>
-        <span class="preview-label">▶ live demo</span>
-        <span class="preview-expand">⛶ expand</span>
-      </div>
-      <div class="project-body">
-        <div class="project-header">
-          <div class="project-emoji">🥗</div>
-          <span class="project-badge">RAG · GenAI · Clustering</span>
+      <!-- CARD 2: Voice AI Interviewer -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="interview.webm">
+          <video src="interview.webm" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
         </div>
-        <div class="project-title">AI-Powered Meal Planner</div>
-        <div class="project-desc">RAG pipeline with Llama-3 + USDA FoodData API. KMeans clustering on macronutrient embeddings with a constraint-aware retrieval layer for personalized meal generation.</div>
-        <div class="project-highlight">⚡ Semantic clustering drives personalized content</div>
-        <div class="project-stack">
-          <span class="stack-pill" style="animation-delay:0.00s">LLaMA 3</span><span class="stack-pill" style="animation-delay:0.05s">RAG</span>
-          <span class="stack-pill" style="animation-delay:0.10s">FAISS</span><span class="stack-pill" style="animation-delay:0.15s">KMeans</span>
-          <span class="stack-pill" style="animation-delay:0.20s">LangChain</span><span class="stack-pill" style="animation-delay:0.25s">Streamlit</span>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🎙️</div>
+            <span class="project-badge">Agentic AI · Speech</span>
+          </div>
+          <div class="project-title">Voice-Based AI Interviewer</div>
+          <div class="project-desc">End-to-end agentic speech pipeline integrating faster-whisper (STT), LLM inference, and TTS — from proof-of-concept to scalable Streamlit deployment with multi-turn conversation.</div>
+          <div class="project-highlight">⚡ Validated transcription across diverse voice scenarios</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">faster-whisper</span>
+            <span class="stack-pill" style="animation-delay:0.05s">LangGraph</span>
+            <span class="stack-pill" style="animation-delay:0.10s">LLaMA 3</span>
+            <span class="stack-pill" style="animation-delay:0.15s">TTS</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Streamlit</span>
+            <span class="stack-pill" style="animation-delay:0.25s">Python</span>
+          </div>
+          <div class="project-footer"><a href="https://github.com/MaDHuPRi/AI-Interview-Curator" class="project-link" target="_blank">↗ GitHub</a></div>
         </div>
-        <div class="project-footer"><a href="https://github.com" class="project-link" target="_blank">↗ GitHub</a></div>
       </div>
-    </div>
 
-    <!-- CARD 3: YouTube Prediction (canvas demo) -->
-    <div class="project-card">
-      <div class="project-preview" data-video-src="youtube.webm">
-        <video src="youtube.webm" muted loop playsinline autoplay></video>
-        <span class="preview-label">▶ live demo</span>
-        <span class="preview-expand">⛶ expand</span>
-      </div>
-      <div class="project-body">
-        <div class="project-header">
-          <div class="project-emoji">📺</div>
-          <span class="project-badge">ML Pipeline · NLP</span>
+      <!-- CARD 3: Meal Planner -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="mealplanner.webm">
+          <video src="mealplanner.webm" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
         </div>
-        <div class="project-title">YouTube Popularity Prediction</div>
-        <div class="project-desc">Structured + text features from YouTube Data API. Random Forest and XGBoost models, then KMeans &amp; HDBSCAN clustering to map predictions to actionable content tiers.</div>
-        <div class="project-highlight">⚡ Cross-validated ML with unsupervised segmentation</div>
-        <div class="project-stack">
-          <span class="stack-pill" style="animation-delay:0.00s">XGBoost</span><span class="stack-pill" style="animation-delay:0.05s">Random Forest</span>
-          <span class="stack-pill" style="animation-delay:0.10s">HDBSCAN</span><span class="stack-pill" style="animation-delay:0.15s">KMeans</span>
-          <span class="stack-pill" style="animation-delay:0.20s">Pandas</span><span class="stack-pill" style="animation-delay:0.25s">YouTube API</span>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🥗</div>
+            <span class="project-badge">RAG · GenAI · Clustering</span>
+          </div>
+          <div class="project-title">AI-Powered Meal Planner</div>
+          <div class="project-desc">RAG pipeline with Llama-3 + USDA FoodData API. KMeans clustering on macronutrient embeddings with a constraint-aware retrieval layer for personalized meal generation.</div>
+          <div class="project-highlight">⚡ Semantic clustering drives personalized content</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">LLaMA 3</span>
+            <span class="stack-pill" style="animation-delay:0.05s">RAG</span>
+            <span class="stack-pill" style="animation-delay:0.10s">FAISS</span>
+            <span class="stack-pill" style="animation-delay:0.15s">KMeans</span>
+            <span class="stack-pill" style="animation-delay:0.20s">LangChain</span>
+            <span class="stack-pill" style="animation-delay:0.25s">Streamlit</span>
+          </div>
+          <div class="project-footer"><a href="https://github.com/MaDHuPRi/UMBC-DATA606-Capstone" class="project-link" target="_blank">↗ GitHub</a></div>
         </div>
-        <div class="project-footer"><a href="https://github.com" class="project-link" target="_blank">↗ GitHub</a>
-        <a href="https://youtubepopularity.streamlit.app" class="project-link" target="_blank">↗ Live App</a></div>
       </div>
-    </div>
 
-    <!-- CARD 4: Dyslexia ML (video) -->
-    <div class="project-card">
-      <div class="project-preview" data-video-src="dyslexia-demo.webm">
-        <video src="dyslexia-demo.webm" muted loop playsinline autoplay></video>
-        <span class="preview-label">▶ live demo</span>
-        <span class="preview-expand">⛶ expand</span>
+      <!-- CARD 4: YouTube Prediction -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="youtube.webm">
+          <video src="youtube.webm" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">📺</div>
+            <span class="project-badge">ML Pipeline · NLP</span>
+          </div>
+          <div class="project-title">YouTube Popularity Prediction</div>
+          <div class="project-desc">Structured + text features from YouTube Data API. Random Forest and XGBoost models, then KMeans &amp; HDBSCAN clustering to map predictions to actionable content tiers.</div>
+          <div class="project-highlight">⚡ Cross-validated ML with unsupervised segmentation</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">XGBoost</span>
+            <span class="stack-pill" style="animation-delay:0.05s">Random Forest</span>
+            <span class="stack-pill" style="animation-delay:0.10s">HDBSCAN</span>
+            <span class="stack-pill" style="animation-delay:0.15s">KMeans</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Pandas</span>
+            <span class="stack-pill" style="animation-delay:0.25s">YouTube API</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/Youtube_Popularity_Classification" class="project-link" target="_blank">↗ GitHub</a>
+            <a href="https://youtubepopularity.streamlit.app" class="project-link" target="_blank">↗ Live App</a>
+          </div>
+        </div>
       </div>
-      <div class="project-body">
-        <div class="project-header">
-          <div class="project-emoji">🧬</div>
-          <span class="project-badge">ML · Patent · Publication</span>
-        </div>
-        <div class="project-title">Dyslexia Diagnosis via ML</div>
-        <div class="project-desc">Random Forest with SMOTE class balancing and hyperparameter tuning on behavioral data. 95.2% diagnostic accuracy — peer-reviewed publication + India patent filed.</div>
-        <div class="project-highlight">⚡ 95.2% accuracy · TIJER · Patent No. 202341084582 A</div>
-        <div class="project-stack">
-          <span class="stack-pill" style="animation-delay:0.00s">Random Forest</span><span class="stack-pill" style="animation-delay:0.05s">SMOTE</span>
-          <span class="stack-pill" style="animation-delay:0.10s">Scikit-learn</span><span class="stack-pill" style="animation-delay:0.15s">Pandas</span>
-          <span class="stack-pill" style="animation-delay:0.20s">NumPy</span><span class="stack-pill" style="animation-delay:0.25s">Matplotlib</span>
-        </div>
-        <div class="project-footer">
-          <a href="https://dyslexia-diagnosis-ddqebjp7fbq2x79jpxzwev.streamlit.app" class="project-link" target="_blank">↗ Live App</a>
-          <a href="#" class="project-link">↗ Publication</a>
-          <a href="#" class="project-link">↗ Patent</a>
-        </div>
-      </div>
-    </div>
 
-  </div>
+      <!-- CARD 5: Dyslexia ML -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="dyslexia-demo.webm">
+          <video src="dyslexia-demo.webm" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🧬</div>
+            <span class="project-badge">ML · Patent · Publication</span>
+          </div>
+          <div class="project-title">Dyslexia Diagnosis via ML</div>
+          <div class="project-desc">Random Forest with SMOTE class balancing and hyperparameter tuning on behavioral data. 95.2% diagnostic accuracy — peer-reviewed publication + India patent filed.</div>
+          <div class="project-highlight">⚡ 95.2% accuracy · TIJER · Patent No. 202341084582 A</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">Random Forest</span>
+            <span class="stack-pill" style="animation-delay:0.05s">SMOTE</span>
+            <span class="stack-pill" style="animation-delay:0.10s">Scikit-learn</span>
+            <span class="stack-pill" style="animation-delay:0.15s">Pandas</span>
+            <span class="stack-pill" style="animation-delay:0.20s">NumPy</span>
+            <span class="stack-pill" style="animation-delay:0.25s">Matplotlib</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/Dyslexia-Diagnosis" class="project-link" target="_blank">↗ GitHub</a>
+            <a href="https://dyslexia-diagnosis-ddqebjp7fbq2x79jpxzwev.streamlit.app" class="project-link" target="_blank">↗ Live App</a>
+            <a href="#" class="project-link">↗ Publication</a>
+            <a href="#" class="project-link">↗ Patent</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /projects-grid -->
+    
+  </div><!-- /carousel-wrap -->
 </section>
 
 <section id="education">
@@ -567,7 +664,7 @@
 </footer>
 
 <script>
-/* ── CANVAS DEMOS: always running ── */
+/* ── CANVAS DEMOS ── */
 (function() {
   const demos = {};
 
@@ -612,7 +709,7 @@
             ctx.fillStyle=grd; ctx.beginPath(); ctx.roundRect(x,y,bwI,bh,4); ctx.fill();
             ctx.fillStyle='rgba(255,255,255,0.45)'; ctx.font=`${Math.min(10,bw*0.55)}px 'DM Mono',monospace`; ctx.textAlign='center'; ctx.fillText(labels[i],x+bwI/2,H-pad+14);
           });
-          t++; if(t>120) t=0; // loop animation
+          t++; if(t>120) t=0;
           raf=requestAnimationFrame(draw);
         }
         draw();
@@ -621,7 +718,58 @@
     };
   })();
 
-  // Start canvas demos immediately (IntersectionObserver)
+  demos.consequence = (() => {
+    let raf, t = 0;
+    const nodes = [
+      { x:0.50, y:0.10, color:'#6ee7b7', r:20 },
+      { x:0.18, y:0.34, color:'#6ee7b7', r:13 },
+      { x:0.50, y:0.34, color:'#6ee7b7', r:13 },
+      { x:0.82, y:0.34, color:'#6ee7b7', r:13 },
+      { x:0.10, y:0.59, color:'#93c5fd', r:10 },
+      { x:0.33, y:0.59, color:'#93c5fd', r:10 },
+      { x:0.67, y:0.59, color:'#93c5fd', r:10 },
+      { x:0.07, y:0.84, color:'#4ade80', r:8 },
+      { x:0.25, y:0.84, color:'#f87171', r:8 },
+      { x:0.50, y:0.84, color:'#f87171', r:8 },
+      { x:0.73, y:0.84, color:'#4ade80', r:8 },
+      { x:0.92, y:0.84, color:'#94a3b8', r:8 },
+    ];
+    const edges = [
+      [0,1,'rgba(110,231,183,0.5)'],[0,2,'rgba(110,231,183,0.5)'],[0,3,'rgba(110,231,183,0.5)'],
+      [1,4,'rgba(147,197,253,0.45)'],[2,5,'rgba(147,197,253,0.45)'],[3,6,'rgba(147,197,253,0.45)'],
+      [4,7,'rgba(74,222,128,0.55)'],[4,8,'rgba(248,113,113,0.5)'],
+      [5,9,'rgba(248,113,113,0.5)'],[6,10,'rgba(74,222,128,0.55)'],[6,11,'rgba(148,163,184,0.4)']
+    ];
+    return {
+      start(canvas, ctx) {
+        const W = canvas.width, H = canvas.height;
+        function draw() {
+          ctx.clearRect(0,0,W,H);
+          ctx.fillStyle='#080c10'; ctx.fillRect(0,0,W,H);
+          edges.forEach(([a,b,clr]) => {
+            const na=nodes[a],nb=nodes[b],ax=na.x*W,ay=na.y*H,bx=nb.x*W,by=nb.y*H;
+            ctx.beginPath(); ctx.moveTo(ax,ay);
+            ctx.bezierCurveTo(ax,ay+(by-ay)*0.45,bx,ay+(by-ay)*0.55,bx,by);
+            ctx.strokeStyle=clr; ctx.lineWidth=1.2;
+            ctx.setLineDash([3,4]); ctx.stroke(); ctx.setLineDash([]);
+          });
+          nodes.forEach((n,i) => {
+            const x=n.x*W,y=n.y*H,pulse=1+Math.sin(t*0.04+i*0.9)*0.1,r=n.r*pulse;
+            const grd=ctx.createRadialGradient(x,y,0,x,y,r*2.6);
+            grd.addColorStop(0,n.color+'28'); grd.addColorStop(1,'transparent');
+            ctx.beginPath(); ctx.arc(x,y,r*2.6,0,Math.PI*2); ctx.fillStyle=grd; ctx.fill();
+            ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2);
+            ctx.fillStyle=n.color+'22'; ctx.strokeStyle=n.color; ctx.lineWidth=1.3;
+            ctx.fill(); ctx.stroke();
+          });
+          t++; raf=requestAnimationFrame(draw);
+        }
+        draw();
+      },
+      stop() { cancelAnimationFrame(raf); t=0; }
+    };
+  })();
+
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       const canvas = e.target;
@@ -641,7 +789,7 @@
   document.querySelectorAll('.demo-canvas').forEach(c => observer.observe(c));
 })();
 
-/* ── LIGHTBOX: click preview to expand video ── */
+/* ── LIGHTBOX ── */
 (function() {
   const lightbox = document.getElementById('lightbox');
   const lbVideo  = document.getElementById('lightbox-video');
@@ -650,10 +798,10 @@
   document.querySelectorAll('.project-preview').forEach(preview => {
     preview.addEventListener('click', () => {
       const videoEl = preview.querySelector('video');
-      if(!videoEl) return; // canvas-only cards — no lightbox
+      if(!videoEl) return;
       const src = videoEl.src || videoEl.getAttribute('src');
       lbVideo.src = src;
-      lbVideo.muted = false; // unmute in lightbox so they can hear/read
+      lbVideo.muted = false;
       lbVideo.currentTime = 0;
       lbVideo.play().catch(()=>{});
       lightbox.classList.add('open');
@@ -673,61 +821,86 @@
   document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
 })();
 
-/* ── CURSOR + PARTICLES ── */
+/* ── 3D TILT + SCROLL REVEAL ── */
 (function(){
-  // inject cursor elements
-  const dot = Object.assign(document.createElement('div'), {id:'cursor-dot'});
-  const ring = Object.assign(document.createElement('div'), {id:'cursor-ring'});
-  const pcanvas = Object.assign(document.createElement('canvas'), {id:'particle-canvas'});
-  document.body.append(dot, ring, pcanvas);
-
-  const style = document.createElement('style');
-  style.textContent = `
-    * { cursor: none !important; }
-    #cursor-dot{position:fixed;top:0;left:0;z-index:9999;width:8px;height:8px;border-radius:50%;background:var(--coral);pointer-events:none;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
-    #cursor-ring{position:fixed;top:0;left:0;z-index:9998;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--coral);pointer-events:none;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s,opacity .3s;opacity:.6}
-    body.cursor-hover #cursor-dot{width:12px;height:12px;background:var(--purple)}
-    body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:var(--purple);opacity:.4}
-    body.cursor-click #cursor-dot{width:5px;height:5px}
-    body.cursor-click #cursor-ring{width:60px;height:60px;opacity:.15}
-    #particle-canvas{position:fixed;inset:0;z-index:9990;pointer-events:none;opacity:.75}
-  `;
-  document.head.appendChild(style);
-
-  const ctx = pcanvas.getContext('2d');
-  let mx=-200,my=-200,rx=-200,ry=-200;
-  const particles=[], colors=['#D85A30','#7F77DD','#1D9E75','#D4537E','#BA7517','#378ADD'];
-  function resize(){pcanvas.width=innerWidth;pcanvas.height=innerHeight;}
-  resize(); window.addEventListener('resize',resize);
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';spawnParticle(mx,my);});
-  document.addEventListener('mousedown',()=>document.body.classList.add('cursor-click'));
-  document.addEventListener('mouseup',()=>document.body.classList.remove('cursor-click'));
-  document.querySelectorAll('a,button,.btn,.skill-card,.project-card,.contact-btn,nav ul a').forEach(el=>{
-    el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
-    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
-  });
-  function spawnParticle(x,y){
-    const size=Math.random()*6+3,angle=Math.random()*Math.PI*2,speed=Math.random()*1.5+0.5;
-    particles.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed-1.2,size,alpha:.9,decay:Math.random()*.02+.018,color:colors[Math.floor(Math.random()*colors.length)],shape:Math.random()>.5?'circle':'star'});
-  }
-  function drawStar(cx,cy,r){ctx.beginPath();for(let i=0;i<5;i++){const a1=(i*4*Math.PI)/5-Math.PI/2,a2=((i*4+2)*Math.PI)/5-Math.PI/2;if(i===0)ctx.moveTo(cx+r*Math.cos(a1),cy+r*Math.sin(a1));else ctx.lineTo(cx+r*Math.cos(a1),cy+r*Math.sin(a1));ctx.lineTo(cx+(r*.45)*Math.cos(a2),cy+(r*.45)*Math.sin(a2));}ctx.closePath();ctx.fill();}
-  function loop(){
-    ctx.clearRect(0,0,pcanvas.width,pcanvas.height);
-    for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.04;p.alpha-=p.decay;if(p.alpha<=0){particles.splice(i,1);continue;}ctx.save();ctx.globalAlpha=p.alpha;ctx.fillStyle=p.color;if(p.shape==='circle'){ctx.beginPath();ctx.arc(p.x,p.y,p.size/2,0,Math.PI*2);ctx.fill();}else{drawStar(p.x,p.y,p.size/2);}ctx.restore();}
-    rx+=(mx-rx)*.10;ry+=(my-ry)*.10;ring.style.left=rx+'px';ring.style.top=ry+'px';
-    requestAnimationFrame(loop);
-  }
-  loop();
-
-  /* 3D tilt */
   document.querySelectorAll('.skill-card,.project-card').forEach(card=>{
-    card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=(e.clientX-cx)/(r.width/2),dy=(e.clientY-cy)/(r.height/2);card.style.transform=`perspective(600px) rotateY(${dx*8}deg) rotateX(${-dy*8}deg) translateY(-4px)`;});
-    card.addEventListener('mouseleave',()=>{card.style.transform='';});
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+      const dx=(e.clientX-cx)/(r.width/2),dy=(e.clientY-cy)/(r.height/2);
+      card.style.transform=`perspective(600px) rotateY(${dx*8}deg) rotateX(${-dy*8}deg) translateY(-4px)`;
+    });
+    card.addEventListener('mouseleave',()=>{ card.style.transform=''; });
   });
 
-  /* scroll reveal */
-  const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});},{threshold:.1});
-  document.querySelectorAll('.skill-card,.project-card,.tl-item,.stat-card,.edu-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(32px)';el.style.transition='opacity .55s ease,transform .55s ease';revealObs.observe(el);});
+  const revealObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+    });
+  },{threshold:.1});
+  document.querySelectorAll('.skill-card,.project-card,.tl-item,.stat-card,.edu-card').forEach(el=>{
+    el.style.opacity='0'; el.style.transform='translateY(32px)';
+    el.style.transition='opacity .55s ease,transform .55s ease';
+    revealObs.observe(el);
+  });
+})();
+
+/* ── CAROUSEL ── */
+(function() {
+  const grid    = document.getElementById('proj-grid');
+  const prevBtn = document.getElementById('proj-prev');
+  const nextBtn = document.getElementById('proj-next');
+  const dotsWrap= document.getElementById('proj-dots');
+  if (!grid) return;
+  const cards = Array.from(grid.querySelectorAll('.project-card'));
+
+  const visible = () => window.innerWidth <= 900 ? 1 : 3;
+  const totalDots = () => Math.ceil(cards.length / visible());
+
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    const n = totalDots();
+    for (let i = 0; i < n; i++) {
+      const d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Page ' + (i + 1));
+      d.addEventListener('click', () => {
+        const targetCard = cards[i * visible()];
+        grid.scrollTo({ left: targetCard.offsetLeft - grid.offsetLeft, behavior: 'smooth' });
+      });
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  const cardW = () => cards[0].offsetWidth + 24;
+
+  function currentPage() {
+    const sl = grid.scrollLeft;
+    const v  = visible();
+    // find which card is closest to left edge, then divide into pages
+    let closest = 0, minD = Infinity;
+    cards.forEach((c, i) => {
+      const d = Math.abs((c.offsetLeft - grid.offsetLeft) - sl);
+      if (d < minD) { minD = d; closest = i; }
+    });
+    return Math.floor(closest / v);
+  }
+
+  function updateState() {
+    const sl  = grid.scrollLeft;
+    const max = grid.scrollWidth - grid.clientWidth;
+    prevBtn.disabled = sl < 10;
+    nextBtn.disabled = sl > max - 10;
+    const page = currentPage();
+    dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === page));
+  }
+
+  prevBtn.addEventListener('click', () => grid.scrollBy({ left: -cardW() * visible(), behavior: 'smooth' }));
+  nextBtn.addEventListener('click', () => grid.scrollBy({ left:  cardW() * visible(), behavior: 'smooth' }));
+  grid.addEventListener('scroll', updateState);
+  window.addEventListener('resize', () => { buildDots(); updateState(); });
+
+  buildDots();
+  updateState();
 })();
 </script>
 
