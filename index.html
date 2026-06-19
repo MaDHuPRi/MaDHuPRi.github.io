@@ -476,7 +476,37 @@
     <button class="carousel-arrow next" id="proj-next" aria-label="Next">&#8594;</button>
     <div class="projects-grid" id="proj-grid">
 
-      <!-- CARD 1: Consequence Map -->
+      <!-- CARD 1: News Analyzer -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="news_analyzer.webm">
+          <video src="news_analyzer.webm" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🗞️</div>
+            <span class="project-badge">NLP · Transformers · Evaluation</span>
+          </div>
+          <div class="project-title">Automated News Analytics</div>
+          <div class="project-desc">Integrated NLP pipeline — paste any article or URL and get a DistilBART summary, RoBERTa sentiment badge, and NMF topic classification. Built on a systematic 12-model empirical evaluation with 237 manually annotated articles.</div>
+          <div class="project-highlight">ROUGE-L 24.37 · Macro F1 0.382 · 8-topic NMF coherence -1.647</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">DistilBART</span>
+            <span class="stack-pill" style="animation-delay:0.05s">RoBERTa</span>
+            <span class="stack-pill" style="animation-delay:0.10s">NMF</span>
+            <span class="stack-pill" style="animation-delay:0.15s">NLTK</span>
+            <span class="stack-pill" style="animation-delay:0.20s">HuggingFace</span>
+           <span class="stack-pill" style="animation-delay:0.20s">Streamlit</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/Automated_News_Analyzer" class="project-link" target="_blank">↗ GitHub</a>
+           <a href="https://automatednewsanalyzer.streamlit.app" class="project-link" target="_blank">↗ Live App</a>
+          </div>
+        </div>
+      </div>
+     
+     <!-- CARD 1: Consequence Map -->
       <div class="project-card">
         <div class="project-preview" data-video-src="consequence.mp4">
           <video src="consequence.mp4" muted loop playsinline autoplay></video>
