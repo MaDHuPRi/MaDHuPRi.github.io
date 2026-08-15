@@ -479,89 +479,7 @@
     <button class="carousel-arrow next" id="proj-next" aria-label="Next">&#8594;</button>
     <div class="projects-grid" id="proj-grid">
 
-      <!-- CARD 1: Consequence Map -->
-      <div class="project-card">
-        <div class="project-preview" data-video-src="consequence.mp4">
-          <video src="consequence.mp4" muted loop playsinline autoplay></video>
-          <span class="preview-label">▶ live demo</span>
-          <span class="preview-expand">⛶ expand</span>
-        </div>
-        <div class="project-body">
-          <div class="project-header">
-            <div class="project-emoji">🌊</div>
-            <span class="project-badge">Local LLM Orchestration</span>
-          </div>
-          <div class="project-title">Consequence Map</div>
-          <div class="project-desc">Interactive causal map powered by local LLM inference via Ollama — no backend, no API calls, no latency. Type any decision and get a color-coded SVG tree of 1st, 2nd, and 3rd-order consequences, all running client-side in the browser.</div>
-          <div class="project-highlight">⚡ Zero-backend · client-side LLM inference · sub-100ms render</div>
-          <div class="project-stack">
-            <span class="stack-pill" style="animation-delay:0.00s">Ollama</span>
-            <span class="stack-pill" style="animation-delay:0.05s">LLaMA 3.2</span>
-            <span class="stack-pill" style="animation-delay:0.10s">Vanilla JS</span>
-            <span class="stack-pill" style="animation-delay:0.15s">SVG</span>
-            <span class="stack-pill" style="animation-delay:0.20s">Client-side Inference</span>
-          </div>
-          <div class="project-footer">
-            <a href="https://github.com/MaDHuPRi/consequence-map" class="project-link" target="_blank">↗ GitHub</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 2: Voice AI Interviewer -->
-      <div class="project-card">
-        <div class="project-preview" data-video-src="interview.webm">
-          <video src="interview.webm" muted loop playsinline autoplay></video>
-          <span class="preview-label">▶ live demo</span>
-          <span class="preview-expand">⛶ expand</span>
-        </div>
-        <div class="project-body">
-          <div class="project-header">
-            <div class="project-emoji">🎙️</div>
-            <span class="project-badge">Agentic AI · Speech</span>
-          </div>
-          <div class="project-title">Voice-Based AI Interviewer</div>
-          <div class="project-desc">End-to-end agentic speech pipeline integrating faster-whisper (STT), LLM inference, and TTS — from proof-of-concept to scalable Streamlit deployment with multi-turn conversation.</div>
-          <div class="project-highlight">⚡ Multi-turn STT→LLM→TTS pipeline · Streamlit-deployed · low-latency inference</div>
-          <div class="project-stack">
-            <span class="stack-pill" style="animation-delay:0.00s">faster-whisper</span>
-            <span class="stack-pill" style="animation-delay:0.05s">LangGraph</span>
-            <span class="stack-pill" style="animation-delay:0.10s">LLaMA 3</span>
-            <span class="stack-pill" style="animation-delay:0.15s">TTS</span>
-            <span class="stack-pill" style="animation-delay:0.20s">Streamlit</span>
-            <span class="stack-pill" style="animation-delay:0.25s">Python</span>
-          </div>
-          <div class="project-footer"><a href="https://github.com/MaDHuPRi/AI-Interview-Curator" class="project-link" target="_blank">↗ GitHub</a></div>
-        </div>
-      </div>
-
-      <!-- CARD 3: Meal Planner -->
-      <div class="project-card">
-        <div class="project-preview" data-video-src="mealplanner.webm">
-          <video src="mealplanner.webm" muted loop playsinline autoplay></video>
-          <span class="preview-label">▶ live demo</span>
-          <span class="preview-expand">⛶ expand</span>
-        </div>
-        <div class="project-body">
-          <div class="project-header">
-            <div class="project-emoji">🥗</div>
-            <span class="project-badge">RAG · GenAI · Clustering</span>
-          </div>
-          <div class="project-title">AI-Powered Meal Planner</div>
-          <div class="project-desc">RAG pipeline with Llama-3 + USDA FoodData API. KMeans clustering on macronutrient embeddings with a constraint-aware retrieval layer for personalized meal generation.</div>
-          <div class="project-highlight">⚡ Semantic clustering drives personalized content</div>
-          <div class="project-stack">
-            <span class="stack-pill" style="animation-delay:0.00s">LLaMA 3</span>
-            <span class="stack-pill" style="animation-delay:0.05s">RAG</span>
-            <span class="stack-pill" style="animation-delay:0.10s">FAISS</span>
-            <span class="stack-pill" style="animation-delay:0.15s">KMeans</span>
-            <span class="stack-pill" style="animation-delay:0.20s">LangChain</span>
-            <span class="stack-pill" style="animation-delay:0.25s">Streamlit</span>
-          </div>
-          <div class="project-footer"><a href="https://github.com/MaDHuPRi/UMBC-DATA606-Capstone" class="project-link" target="_blank">↗ GitHub</a></div>
-        </div>
-      </div>
-
-      <!-- CARD 4: YouTube Prediction -->
+      <!-- CARD 1: YouTube Prediction -->
       <div class="project-card">
         <div class="project-preview" data-video-src="youtube.webm">
           <video src="youtube.webm" muted loop playsinline autoplay></video>
@@ -591,7 +509,36 @@
         </div>
       </div>
 
-      <!-- CARD 5: Dyslexia ML -->
+      <!-- CARD 2: Clinic Records — NL Query Tool -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="endodontist.mp4">
+          <video src="endodontist.mp4" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🦷</div>
+            <span class="project-badge">Text-to-SQL · Local LLM</span>
+          </div>
+          <div class="project-title">Clinic Records — NL Query Tool</div>
+          <div class="project-desc">Built for a local endodontist practice — lets front-desk staff and doctors query patient, appointment, and billing records in plain English. A local Llama model (via Ollama) translates natural-language questions into SQL, which runs against a SQLite database migrated from the practice's original MS Access records.</div>
+          <div class="project-highlight">⚡ Fully local inference · no cloud API · Dockerized for office deployment</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">Flask</span>
+            <span class="stack-pill" style="animation-delay:0.05s">LangChain</span>
+            <span class="stack-pill" style="animation-delay:0.10s">Llama (Ollama)</span>
+            <span class="stack-pill" style="animation-delay:0.15s">SQLite</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Docker</span>
+            <span class="stack-pill" style="animation-delay:0.25s">MS Access</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/endodontist-text-to-sql" class="project-link" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: Dyslexia ML -->
       <div class="project-card">
         <div class="project-preview" data-video-src="dyslexia-demo.webm">
           <video src="dyslexia-demo.webm" muted loop playsinline autoplay></video>
@@ -623,7 +570,7 @@
         </div>
       </div>
 
-      <!-- CARD 6: News NLP Pipeline -->
+      <!-- CARD 4: News NLP Pipeline -->
       <div class="project-card">
         <div class="project-preview" style="background: #0d1117; display:flex; align-items:center; justify-content:center;">
           <canvas class="demo-canvas" data-demo="nlp"></canvas>
@@ -653,31 +600,84 @@
         </div>
       </div>
 
-      <!-- CARD 7: Clinic Records — NL Query Tool -->
+      <!-- CARD 5: Voice AI Interviewer -->
       <div class="project-card">
-        <div class="project-preview" data-video-src="endodontist.mp4">
-          <video src="endodontist.mp4" muted loop playsinline autoplay></video>
+        <div class="project-preview" data-video-src="interview.webm">
+          <video src="interview.webm" muted loop playsinline autoplay></video>
           <span class="preview-label">▶ live demo</span>
           <span class="preview-expand">⛶ expand</span>
         </div>
         <div class="project-body">
           <div class="project-header">
-            <div class="project-emoji">🦷</div>
-            <span class="project-badge">Text-to-SQL · Local LLM</span>
+            <div class="project-emoji">🎙️</div>
+            <span class="project-badge">Agentic AI · Speech</span>
           </div>
-          <div class="project-title">Clinic Records — NL Query Tool</div>
-          <div class="project-desc">Built for a local endodontist practice — lets front-desk staff and doctors query patient, appointment, and billing records in plain English. A local Llama model (via Ollama) translates natural-language questions into SQL, which runs against a SQLite database migrated from the practice's original MS Access records.</div>
-          <div class="project-highlight">⚡ Fully local inference · no cloud API · Dockerized for office deployment</div>
+          <div class="project-title">Voice-Based AI Interviewer</div>
+          <div class="project-desc">End-to-end agentic speech pipeline integrating faster-whisper (STT), LLM inference, and TTS — from proof-of-concept to scalable Streamlit deployment with multi-turn conversation.</div>
+          <div class="project-highlight">⚡ Multi-turn STT→LLM→TTS pipeline · Streamlit-deployed · low-latency inference</div>
           <div class="project-stack">
-            <span class="stack-pill" style="animation-delay:0.00s">Flask</span>
-            <span class="stack-pill" style="animation-delay:0.05s">LangChain</span>
-            <span class="stack-pill" style="animation-delay:0.10s">Llama (Ollama)</span>
-            <span class="stack-pill" style="animation-delay:0.15s">SQLite</span>
-            <span class="stack-pill" style="animation-delay:0.20s">Docker</span>
-            <span class="stack-pill" style="animation-delay:0.25s">MS Access</span>
+            <span class="stack-pill" style="animation-delay:0.00s">faster-whisper</span>
+            <span class="stack-pill" style="animation-delay:0.05s">LangGraph</span>
+            <span class="stack-pill" style="animation-delay:0.10s">LLaMA 3</span>
+            <span class="stack-pill" style="animation-delay:0.15s">TTS</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Streamlit</span>
+            <span class="stack-pill" style="animation-delay:0.25s">Python</span>
+          </div>
+          <div class="project-footer"><a href="https://github.com/MaDHuPRi/AI-Interview-Curator" class="project-link" target="_blank">↗ GitHub</a></div>
+        </div>
+      </div>
+
+      <!-- CARD 6: Meal Planner -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="mealplanner.webm">
+          <video src="mealplanner.webm" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🥗</div>
+            <span class="project-badge">RAG · GenAI · Clustering</span>
+          </div>
+          <div class="project-title">AI-Powered Meal Planner</div>
+          <div class="project-desc">RAG pipeline with Llama-3 + USDA FoodData API. KMeans clustering on macronutrient embeddings with a constraint-aware retrieval layer for personalized meal generation.</div>
+          <div class="project-highlight">⚡ Semantic clustering drives personalized content</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">LLaMA 3</span>
+            <span class="stack-pill" style="animation-delay:0.05s">RAG</span>
+            <span class="stack-pill" style="animation-delay:0.10s">FAISS</span>
+            <span class="stack-pill" style="animation-delay:0.15s">KMeans</span>
+            <span class="stack-pill" style="animation-delay:0.20s">LangChain</span>
+            <span class="stack-pill" style="animation-delay:0.25s">Streamlit</span>
+          </div>
+          <div class="project-footer"><a href="https://github.com/MaDHuPRi/UMBC-DATA606-Capstone" class="project-link" target="_blank">↗ GitHub</a></div>
+        </div>
+      </div>
+
+      <!-- CARD 7: Consequence Map -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="consequence.mp4">
+          <video src="consequence.mp4" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🌊</div>
+            <span class="project-badge">Local LLM Orchestration</span>
+          </div>
+          <div class="project-title">Consequence Map</div>
+          <div class="project-desc">Interactive causal map powered by local LLM inference via Ollama — no backend, no API calls, no latency. Type any decision and get a color-coded SVG tree of 1st, 2nd, and 3rd-order consequences, all running client-side in the browser.</div>
+          <div class="project-highlight">⚡ Zero-backend · client-side LLM inference · sub-100ms render</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">Ollama</span>
+            <span class="stack-pill" style="animation-delay:0.05s">LLaMA 3.2</span>
+            <span class="stack-pill" style="animation-delay:0.10s">Vanilla JS</span>
+            <span class="stack-pill" style="animation-delay:0.15s">SVG</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Client-side Inference</span>
           </div>
           <div class="project-footer">
-            <a href="https://github.com/MaDHuPRi/endodontist-text-to-sql" class="project-link" target="_blank">↗ GitHub</a>
+            <a href="https://github.com/MaDHuPRi/consequence-map" class="project-link" target="_blank">↗ GitHub</a>
           </div>
         </div>
       </div>
