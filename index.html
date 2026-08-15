@@ -268,12 +268,12 @@
   .project-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
   .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
   .project-badge { font-family: var(--mono); font-size: 0.65rem; padding: 0.22rem 0.65rem; border-radius: 999px; border: 1px solid; }
-  .project-card:nth-child(1) .project-badge { color: var(--coral); border-color: #F0997B; background: var(--coral-l); }
-  .project-card:nth-child(2) .project-badge { color: #534AB7;      border-color: #AFA9EC; background: var(--purple-l); }
-  .project-card:nth-child(3) .project-badge { color: #0F6E56;      border-color: #5DCAA5; background: var(--teal-l); }
-  .project-card:nth-child(4) .project-badge { color: var(--amber); border-color: #EF9F27; background: var(--amber-l); }
-  .project-card:nth-child(5) .project-badge { color: #185FA5;      border-color: #85B7EB; background: var(--blue-l); }
-  .project-card:nth-child(6) .project-badge { color: #993556;      border-color: #ED93B1; background: var(--pink-l); }
+  .project-card:nth-child(6n+1) .project-badge { color: var(--coral); border-color: #F0997B; background: var(--coral-l); }
+  .project-card:nth-child(6n+2) .project-badge { color: #534AB7;      border-color: #AFA9EC; background: var(--purple-l); }
+  .project-card:nth-child(6n+3) .project-badge { color: #0F6E56;      border-color: #5DCAA5; background: var(--teal-l); }
+  .project-card:nth-child(6n+4) .project-badge { color: var(--amber); border-color: #EF9F27; background: var(--amber-l); }
+  .project-card:nth-child(6n+5) .project-badge { color: #185FA5;      border-color: #85B7EB; background: var(--blue-l); }
+  .project-card:nth-child(6n+0) .project-badge { color: #993556;      border-color: #ED93B1; background: var(--pink-l); }
   .project-emoji { font-size: 1.8rem; }
   .project-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
   .project-desc { font-size: 0.86rem; line-height: 1.6; color: var(--fg2); flex: 1; margin-bottom: 0.75rem; }
@@ -292,12 +292,12 @@
     animation: pill-pop 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
   }
   @keyframes pill-pop { from{transform:scale(0.6);opacity:0} to{transform:scale(1);opacity:1} }
-  .project-card:nth-child(1) .stack-pill { color: var(--coral); border-color: #F0997B; background: var(--coral-l); }
-  .project-card:nth-child(2) .stack-pill { color: #534AB7;      border-color: #AFA9EC; background: var(--purple-l); }
-  .project-card:nth-child(3) .stack-pill { color: #0F6E56;      border-color: #5DCAA5; background: var(--teal-l); }
-  .project-card:nth-child(4) .stack-pill { color: var(--amber); border-color: #EF9F27; background: var(--amber-l); }
-  .project-card:nth-child(5) .stack-pill { color: #185FA5;      border-color: #85B7EB; background: var(--blue-l); }
-  .project-card:nth-child(6) .stack-pill { color: #993556;      border-color: #ED93B1; background: var(--pink-l); }
+  .project-card:nth-child(6n+1) .stack-pill { color: var(--coral); border-color: #F0997B; background: var(--coral-l); }
+  .project-card:nth-child(6n+2) .stack-pill { color: #534AB7;      border-color: #AFA9EC; background: var(--purple-l); }
+  .project-card:nth-child(6n+3) .stack-pill { color: #0F6E56;      border-color: #5DCAA5; background: var(--teal-l); }
+  .project-card:nth-child(6n+4) .stack-pill { color: var(--amber); border-color: #EF9F27; background: var(--amber-l); }
+  .project-card:nth-child(6n+5) .stack-pill { color: #185FA5;      border-color: #85B7EB; background: var(--blue-l); }
+  .project-card:nth-child(6n+0) .stack-pill { color: #993556;      border-color: #ED93B1; background: var(--pink-l); }
 
   .project-footer { display: flex; gap: 0.6rem; flex-wrap: wrap; }
   .project-link { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; text-decoration: none; color: var(--fg2); border: 1px solid var(--border); padding: 0.35rem 0.9rem; border-radius: 999px; transition: all 0.15s; }
@@ -678,6 +678,141 @@
           </div>
           <div class="project-footer">
             <a href="https://github.com/MaDHuPRi/consequence-map" class="project-link" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 8: TalentLens -->
+      <div class="project-card">
+        <div class="project-preview" style="background: linear-gradient(135deg, #1a1a2e, #16213e); display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:2.5rem; opacity:0.5;">🔍</span>
+          <span class="preview-label">▶ video coming soon</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🔍</div>
+            <span class="project-badge">Agentic AI · HR Tech</span>
+          </div>
+          <div class="project-title">TalentLens</div>
+          <div class="project-desc">AI-powered skill-gap interviewer that surfaces what resumes miss. Paste a job description and resume — the agent extracts required skills, categorizes them as matched/partial/missing, generates targeted interview questions for the gaps, and scores answers across role-relevant dimensions for a bias-aware hire/consider/pass verdict.</div>
+          <div class="project-highlight">⚡ Gap analysis → targeted questions → bias-aware scoring, end to end</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">Groq</span>
+            <span class="stack-pill" style="animation-delay:0.05s">LLaMA 3.3 70B</span>
+            <span class="stack-pill" style="animation-delay:0.10s">Streamlit</span>
+            <span class="stack-pill" style="animation-delay:0.15s">Python</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Session State Mgmt</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/TalentLens" class="project-link" target="_blank">↗ GitHub</a>
+            <a href="https://talentlensapp.streamlit.app" class="project-link" target="_blank">↗ Live App</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 9: Lab Notebook Extraction Pipeline -->
+      <div class="project-card">
+        <div class="project-preview" style="background: linear-gradient(135deg, #0d1117, #1a2332); display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:2.5rem; opacity:0.5;">🧪</span>
+          <span class="preview-label">▶ video coming soon</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🧪</div>
+            <span class="project-badge">Vision LLM · Multi-stage Pipeline</span>
+          </div>
+          <div class="project-title">Lab Notebook Extraction Pipeline</div>
+          <div class="project-desc">A 5-stage local pipeline that extracts structured, machine-readable data from handwritten chemistry lab notebook pages — text, scientific symbols, chemical structures, and full experiment understanding. Decomposes what a single vision-LLM pass fails at into preprocessing, zone segmentation, zone-specific extraction, deterministic symbol correction, and LLM assembly into a validated schema.</div>
+          <div class="project-highlight">⚡ 11/11 zones extracted, 0 validation errors on sample page · fully local</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">Ollama</span>
+            <span class="stack-pill" style="animation-delay:0.05s">minicpm-v</span>
+            <span class="stack-pill" style="animation-delay:0.10s">OpenCV</span>
+            <span class="stack-pill" style="animation-delay:0.15s">Pydantic</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Llama 3.2</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/Extraction_Lab_Notebook_Page" class="project-link" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 10: Analogy Explainer -->
+      <div class="project-card">
+        <div class="project-preview" style="background: linear-gradient(135deg, #2d1b4e, #1a1a2e); display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:2.5rem; opacity:0.5;">💡</span>
+          <span class="preview-label">▶ video coming soon</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">💡</div>
+            <span class="project-badge">GenAI · Prompt Engineering</span>
+          </div>
+          <div class="project-title">Analogy Explainer</div>
+          <div class="project-desc">LLM tool that explains complex concepts through everyday analogies — describe any topic and get an ELI5-style explanation grounded in a relatable comparison. A dedicated validation layer checks generated analogies for accuracy before they're shown, rather than trusting raw LLM output.</div>
+          <div class="project-highlight">⚡ Prompt-engineered generation with a validation pass on every output</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">Python</span>
+            <span class="stack-pill" style="animation-delay:0.05s">LLM Client</span>
+            <span class="stack-pill" style="animation-delay:0.10s">Prompt Engineering</span>
+            <span class="stack-pill" style="animation-delay:0.15s">Output Validation</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/Analogy-Explainer" class="project-link" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 11: Optical Flow with RAFT -->
+      <div class="project-card">
+        <div class="project-preview" style="background: #0d1117; display:flex; align-items:center; justify-content:center;">
+          <img src="opticalflow-preview.png" alt="RAFT optical flow visualization" style="width:100%; height:100%; object-fit:cover;" />
+          <span class="preview-label">▶ image demo</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🌀</div>
+            <span class="project-badge">Computer Vision · Optical Flow</span>
+          </div>
+          <div class="project-title">Optical Flow with RAFT</div>
+          <div class="project-desc">Computes dense optical flow between image pairs using RAFT (Recurrent All-Pairs Field Transforms), the state-of-the-art architecture for motion estimation. Paired with YOLOv5 for object detection, enabling motion-aware collision detection on video sequences.</div>
+          <div class="project-highlight">⚡ SOTA optical flow architecture · paired with YOLOv5 for motion-aware detection</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">RAFT</span>
+            <span class="stack-pill" style="animation-delay:0.05s">YOLOv5</span>
+            <span class="stack-pill" style="animation-delay:0.10s">PyTorch</span>
+            <span class="stack-pill" style="animation-delay:0.15s">OpenCV</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Jupyter</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/OpticalFlow_RAFT" class="project-link" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 12: Crime Analysis -->
+      <div class="project-card">
+        <div class="project-preview" style="background: linear-gradient(135deg, #1e1e1e, #2a2a2a); display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:2.5rem; opacity:0.5;">🚔</span>
+          <span class="preview-label">▶ video coming soon</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🚔</div>
+            <span class="project-badge">Big Data · ML Classification</span>
+          </div>
+          <div class="project-title">Crime Analysis Using Big Data</div>
+          <div class="project-desc">Analyzes NYPD historical complaint data at scale using Apache Spark and PySpark, uncovering patterns in crime characteristics. Naive Bayes classification models predict crime category and severity, with GeoPandas mapping used to identify geographic hotspots.</div>
+          <div class="project-highlight">⚡ Big-data pipeline over NYPD complaint records with geospatial hotspot analysis</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">Apache Spark</span>
+            <span class="stack-pill" style="animation-delay:0.05s">PySpark</span>
+            <span class="stack-pill" style="animation-delay:0.10s">Naive Bayes</span>
+            <span class="stack-pill" style="animation-delay:0.15s">GeoPandas</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Jupyter</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/Crime-Analysis" class="project-link" target="_blank">↗ GitHub</a>
           </div>
         </div>
       </div>
