@@ -273,6 +273,7 @@
   .project-card:nth-child(3) .project-badge { color: #0F6E56;      border-color: #5DCAA5; background: var(--teal-l); }
   .project-card:nth-child(4) .project-badge { color: var(--amber); border-color: #EF9F27; background: var(--amber-l); }
   .project-card:nth-child(5) .project-badge { color: #185FA5;      border-color: #85B7EB; background: var(--blue-l); }
+  .project-card:nth-child(6) .project-badge { color: #993556;      border-color: #ED93B1; background: var(--pink-l); }
   .project-emoji { font-size: 1.8rem; }
   .project-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
   .project-desc { font-size: 0.86rem; line-height: 1.6; color: var(--fg2); flex: 1; margin-bottom: 0.75rem; }
@@ -296,6 +297,7 @@
   .project-card:nth-child(3) .stack-pill { color: #0F6E56;      border-color: #5DCAA5; background: var(--teal-l); }
   .project-card:nth-child(4) .stack-pill { color: var(--amber); border-color: #EF9F27; background: var(--amber-l); }
   .project-card:nth-child(5) .stack-pill { color: #185FA5;      border-color: #85B7EB; background: var(--blue-l); }
+  .project-card:nth-child(6) .stack-pill { color: #993556;      border-color: #ED93B1; background: var(--pink-l); }
 
   .project-footer { display: flex; gap: 0.6rem; flex-wrap: wrap; }
   .project-link { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; text-decoration: none; color: var(--fg2); border: 1px solid var(--border); padding: 0.35rem 0.9rem; border-radius: 999px; transition: all 0.15s; }
@@ -362,6 +364,7 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#education">Education</a></li>
+    <li><a href="#pubpat">Research</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -377,9 +380,9 @@
       <div class="hero-tag">Open to opportunities · F-1 OPT (STEM-eligible)</div>
       <h1>Madhu<br><em>Priya</em><br>Pulletikurthi</h1>
       <p class="hero-sub">
-        Data Scientist &amp; AI/ML Engineer specializing in GenAI, agentic architectures,
-        and production-grade ML pipelines. I turn messy data into intelligent systems
-        that work in the real world.
+        Data Scientist &amp; AI/ML Engineer specializing in retrieval-augmented generation (RAG), agentic architectures,
+        and production-grade ML systems. Patent-holding researcher with 95.2% diagnostic accuracy
+        in a deployed ML system — I build things that work in the real world.
       </p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">View my work</a>
@@ -399,7 +402,7 @@
         <span class="avatar-badge badge-ml">🤖 ML Engineer</span>
         <span class="avatar-badge badge-rag">✨ RAG Expert</span>
         <span class="avatar-badge badge-llm">🧠 LLM Fine-tuning</span>
-        <span class="avatar-badge badge-gpa">🏆 GPA 4.0</span>
+        <span class="avatar-badge badge-gpa">📜 Patent Holder</span>
         <video src="avatar.mp4" autoplay muted loop playsinline></video>
       </div>
     </div>
@@ -414,13 +417,13 @@
       <div class="about-text">
         <p>I'm a Data Scientist &amp; AI/ML Engineer pursuing my <strong>M.S. in Data Science at UMBC</strong> (GPA: 4.0), with a deep focus on Generative AI, agentic pipelines, and production-grade ML systems.</p>
         <p>From designing RAG architectures and agentic speech pipelines to shipping containerized ML workflows at KPMG, I thrive at the intersection of research and engineering — turning ideas into things that actually run in production.</p>
-        <p>My ML work led to a <strong>peer-reviewed publication</strong> and a <strong>patent filing</strong> with the India Patent Office. I also teach ML &amp; Data Science at UMBC, guiding students through the full model lifecycle.</p>
+        <p>My ML work on dyslexia diagnosis achieved <strong>95.2% accuracy</strong>, leading to a <strong>peer-reviewed TIJER publication</strong> and <strong>India Patent No. 202341084582 A</strong> — a differentiator held by fewer than 1% of MS graduates. I also teach ML &amp; Data Science at UMBC, guiding students through the full model lifecycle.</p>
       </div>
     </div>
     <div class="about-stats">
       <div class="stat-card"><div class="stat-num">4.0</div><div class="stat-label">GPA at UMBC</div></div>
-      <div class="stat-card"><div class="stat-num">4+</div><div class="stat-label">shipped AI projects</div></div>
-      <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">patent filed</div></div>
+      <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">AI projects built</div></div>
+      <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">India patent filed · No. 202341084582 A</div></div>
       <div class="stat-card"><div class="stat-num">20+</div><div class="stat-label">students mentored</div></div>
     </div>
   </div>
@@ -430,7 +433,7 @@
   <p class="section-label">// what i work with</p>
   <h2 class="section-title">Skills &amp;<br><em>tools</em></h2>
   <div class="skills-grid">
-    <div class="skill-card"><div class="skill-icon">🤖</div><div class="skill-name">GenAI &amp; Agentic AI</div><div class="skill-tags"><span class="tag">RAG Pipelines</span><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">Prompt Engineering</span><span class="tag">LLM Evaluation</span><span class="tag">Claude SDK</span></div></div>
+    <div class="skill-card"><div class="skill-icon">🤖</div><div class="skill-name">GenAI &amp; Agentic AI</div><div class="skill-tags"><span class="tag">RAG Pipelines</span><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">Prompt Engineering</span><span class="tag">LLM Evaluation</span><span class="tag">MCP Servers</span></div></div>
     <div class="skill-card"><div class="skill-icon">🧠</div><div class="skill-name">LLMs &amp; Embeddings</div><div class="skill-tags"><span class="tag">OpenAI GPT-4</span><span class="tag">LLaMA 3</span><span class="tag">HuggingFace</span><span class="tag">FAISS</span><span class="tag">Vector Search</span><span class="tag">Semantic Search</span></div></div>
     <div class="skill-card"><div class="skill-icon">📊</div><div class="skill-name">ML &amp; Data Science</div><div class="skill-tags"><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">Scikit-learn</span><span class="tag">XGBoost</span><span class="tag">SMOTE</span><span class="tag">HDBSCAN</span></div></div>
     <div class="skill-card"><div class="skill-icon">☁️</div><div class="skill-name">Cloud &amp; MLOps</div><div class="skill-tags"><span class="tag">AWS EC2/S3/Lambda</span><span class="tag">Docker</span><span class="tag">REST APIs</span><span class="tag">Streamlit</span><span class="tag">Flask</span><span class="tag">Gradio</span></div></div>
@@ -445,18 +448,7 @@
   <div class="timeline">
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-date">October 2024 — May 2026</div>
-      <div class="tl-role">Data &amp; Systems Analyst, Residential Life</div>
-      <div class="tl-company">University of Maryland, Baltimore County (UMBC) · Baltimore, MD</div>
-      <ul class="tl-bullets">
-        <li>Analyzed departmental housing budgets and built 15+ BI dashboards in Power BI and Streamlit for residential life leadership to track spending and occupancy trends.</li>
-        <li>Ran ETL and query jobs against an existing Hadoop cluster to support housing data analysis and reporting pipelines.</li>
-        <li>Built and maintained the residential housing web platform's backend (Python, PostgreSQL) supporting 2,000+ resident records across 3 semesters of housing operations.</li>
-      </ul>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-date">October 2024 — May 2026</div>
+      <div class="tl-date">October 2024 — Present</div>
       <div class="tl-role">Graduate Teaching Assistant — ML &amp; Data Science</div>
       <div class="tl-company">University of Maryland, Baltimore County · Baltimore, MD</div>
       <ul class="tl-bullets">
@@ -487,37 +479,7 @@
     <button class="carousel-arrow next" id="proj-next" aria-label="Next">&#8594;</button>
     <div class="projects-grid" id="proj-grid">
 
-      <!-- CARD 1: News Analyzer -->
-      <div class="project-card">
-        <div class="project-preview" data-video-src="news_analyzer.webm">
-          <video src="news_analyzer.webm" muted loop playsinline autoplay></video>
-          <span class="preview-label">▶ live demo</span>
-          <span class="preview-expand">⛶ expand</span>
-        </div>
-        <div class="project-body">
-          <div class="project-header">
-            <div class="project-emoji">🗞️</div>
-            <span class="project-badge">NLP · Transformers · Evaluation</span>
-          </div>
-          <div class="project-title">Automated News Analytics</div>
-          <div class="project-desc">Integrated NLP pipeline — paste any article or URL and get a DistilBART summary, RoBERTa sentiment badge, and NMF topic classification. Built on a systematic 12-model empirical evaluation with 237 manually annotated articles.</div>
-          <div class="project-highlight">ROUGE-L 24.37 · Macro F1 0.382 · 8-topic NMF coherence -1.647</div>
-          <div class="project-stack">
-            <span class="stack-pill" style="animation-delay:0.00s">DistilBART</span>
-            <span class="stack-pill" style="animation-delay:0.05s">RoBERTa</span>
-            <span class="stack-pill" style="animation-delay:0.10s">NMF</span>
-            <span class="stack-pill" style="animation-delay:0.15s">NLTK</span>
-            <span class="stack-pill" style="animation-delay:0.20s">HuggingFace</span>
-           <span class="stack-pill" style="animation-delay:0.20s">Streamlit</span>
-          </div>
-          <div class="project-footer">
-            <a href="https://github.com/MaDHuPRi/Automated_News_Analyzer" class="project-link" target="_blank">↗ GitHub</a>
-           <a href="https://automatednewsanalyzer.streamlit.app" class="project-link" target="_blank">↗ Live App</a>
-          </div>
-        </div>
-      </div>
-     
-     <!-- CARD 1: Consequence Map -->
+      <!-- CARD 1: Consequence Map -->
       <div class="project-card">
         <div class="project-preview" data-video-src="consequence.mp4">
           <video src="consequence.mp4" muted loop playsinline autoplay></video>
@@ -527,17 +489,17 @@
         <div class="project-body">
           <div class="project-header">
             <div class="project-emoji">🌊</div>
-            <span class="project-badge">GenAI · Systems Thinking</span>
+            <span class="project-badge">Local LLM Orchestration</span>
           </div>
           <div class="project-title">Consequence Map</div>
-          <div class="project-desc">Type any decision and get an interactive visual tree of 1st, 2nd, and 3rd order consequences — powered by local AI via Ollama. Nodes are labeled positive, negative, or neutral with color-coded SVG bezier connectors tracing every causal pathway.</div>
-          <div class="project-highlight">⚡ Zero backend · runs entirely in the browser</div>
+          <div class="project-desc">Interactive causal map powered by local LLM inference via Ollama — no backend, no API calls, no latency. Type any decision and get a color-coded SVG tree of 1st, 2nd, and 3rd-order consequences, all running client-side in the browser.</div>
+          <div class="project-highlight">⚡ Zero-backend · client-side LLM inference · sub-100ms render</div>
           <div class="project-stack">
             <span class="stack-pill" style="animation-delay:0.00s">Ollama</span>
             <span class="stack-pill" style="animation-delay:0.05s">LLaMA 3.2</span>
             <span class="stack-pill" style="animation-delay:0.10s">Vanilla JS</span>
             <span class="stack-pill" style="animation-delay:0.15s">SVG</span>
-            <span class="stack-pill" style="animation-delay:0.20s">Systems Thinking</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Client-side Inference</span>
           </div>
           <div class="project-footer">
             <a href="https://github.com/MaDHuPRi/consequence-map" class="project-link" target="_blank">↗ GitHub</a>
@@ -559,7 +521,7 @@
           </div>
           <div class="project-title">Voice-Based AI Interviewer</div>
           <div class="project-desc">End-to-end agentic speech pipeline integrating faster-whisper (STT), LLM inference, and TTS — from proof-of-concept to scalable Streamlit deployment with multi-turn conversation.</div>
-          <div class="project-highlight">⚡ Validated transcription across diverse voice scenarios</div>
+          <div class="project-highlight">⚡ Multi-turn STT→LLM→TTS pipeline · Streamlit-deployed · low-latency inference</div>
           <div class="project-stack">
             <span class="stack-pill" style="animation-delay:0.00s">faster-whisper</span>
             <span class="stack-pill" style="animation-delay:0.05s">LangGraph</span>
@@ -661,6 +623,65 @@
         </div>
       </div>
 
+      <!-- CARD 6: News NLP Pipeline -->
+      <div class="project-card">
+        <div class="project-preview" style="background: #0d1117; display:flex; align-items:center; justify-content:center;">
+          <canvas class="demo-canvas" data-demo="nlp"></canvas>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">📰</div>
+            <span class="project-badge" style="color:#185FA5; border-color:#85B7EB; background:#E6F1FB;">NLP · Transformers · Evaluation</span>
+          </div>
+          <div class="project-title">Automated News Analytics</div>
+          <div class="project-desc">Integrated NLP pipeline — paste any article or URL and get a DistilBART summary, RoBERTa sentiment badge, and NMF topic classification. Built on a systematic 12-model empirical evaluation with 237 manually annotated articles.</div>
+          <div class="project-highlight">⚡ ROUGE-L 24.37 · Macro F1 0.382 · 8-topic NMF coherence -1.647</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s; color:#185FA5; border-color:#85B7EB; background:#E6F1FB;">DistilBART</span>
+            <span class="stack-pill" style="animation-delay:0.05s; color:#185FA5; border-color:#85B7EB; background:#E6F1FB;">RoBERTa</span>
+            <span class="stack-pill" style="animation-delay:0.10s; color:#185FA5; border-color:#85B7EB; background:#E6F1FB;">NMF</span>
+            <span class="stack-pill" style="animation-delay:0.15s; color:#185FA5; border-color:#85B7EB; background:#E6F1FB;">NLTK</span>
+            <span class="stack-pill" style="animation-delay:0.20s; color:#185FA5; border-color:#85B7EB; background:#E6F1FB;">HuggingFace</span>
+            <span class="stack-pill" style="animation-delay:0.25s; color:#185FA5; border-color:#85B7EB; background:#E6F1FB;">Streamlit</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi" class="project-link" target="_blank">↗ GitHub</a>
+            <a href="#" class="project-link">↗ Report</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 7: Clinic Records — NL Query Tool -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="endodontist.mp4">
+          <video src="endodontist.mp4" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🦷</div>
+            <span class="project-badge">Text-to-SQL · Local LLM</span>
+          </div>
+          <div class="project-title">Clinic Records — NL Query Tool</div>
+          <div class="project-desc">Built for a local endodontist practice — lets front-desk staff and doctors query patient, appointment, and billing records in plain English. A local Llama model (via Ollama) translates natural-language questions into SQL, which runs against a SQLite database migrated from the practice's original MS Access records.</div>
+          <div class="project-highlight">⚡ Fully local inference · no cloud API · Dockerized for office deployment</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">Flask</span>
+            <span class="stack-pill" style="animation-delay:0.05s">LangChain</span>
+            <span class="stack-pill" style="animation-delay:0.10s">Llama (Ollama)</span>
+            <span class="stack-pill" style="animation-delay:0.15s">SQLite</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Docker</span>
+            <span class="stack-pill" style="animation-delay:0.25s">MS Access</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/endodontist-text-to-sql" class="project-link" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /projects-grid -->
     <div class="carousel-dots" id="proj-dots"></div>
   </div><!-- /carousel-wrap -->
@@ -684,6 +705,37 @@
   <div class="cert-card">
     <span style="font-size:1.5rem;">🏆</span>
     <div><div class="cert-name">Google Prompting Essentials</div><div class="cert-issuer">Google · 2024</div></div>
+  </div>
+</section>
+
+<section id="pubpat" style="background: #F5F3EE;">
+  <p class="section-label">// research & ip</p>
+  <h2 class="section-title">Publications &amp;<br><em>Patents</em></h2>
+  <div class="timeline" style="max-width: 860px;">
+
+    <div class="tl-item">
+      <div class="tl-dot" style="background: var(--coral);"></div>
+      <div class="tl-date">India Patent Office · 2023</div>
+      <div class="tl-role" style="font-size:1rem;">Patent Application No. 202341084582 A</div>
+      <div class="tl-company">Machine Learning System for Dyslexia Diagnosis via Behavioral Biomarkers</div>
+      <ul class="tl-bullets">
+        <li>Filed with the India Patent Office — one of fewer than 1% of engineering graduates to hold a patent at the time of MS enrollment.</li>
+        <li>Covers a Random Forest classification pipeline with SMOTE balancing and hyperparameter optimization achieving 95.2% diagnostic accuracy on behavioral reading data.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="background: var(--purple);"></div>
+      <div class="tl-date">TIJER International Research Journal · 2023</div>
+      <div class="tl-role" style="font-size:1rem;">Dyslexia Diagnosis Using Machine Learning</div>
+      <div class="tl-company">Peer-reviewed publication · TIJER · ISSN 2349-9249</div>
+      <ul class="tl-bullets">
+        <li>Published research demonstrating 95.2% diagnostic accuracy using ensemble ML methods on behavioral and cognitive biomarkers.</li>
+        <li>Identified SMOTE class balancing and hyperparameter tuning as key drivers of model reliability on imbalanced clinical data.</li>
+        <li><a href="#" style="color: var(--coral); text-decoration: none; font-family: var(--mono); font-size: 0.82rem;">↗ View Publication</a> &nbsp;·&nbsp; <a href="#" style="color: var(--coral); text-decoration: none; font-family: var(--mono); font-size: 0.82rem;">↗ View Patent</a></li>
+      </ul>
+    </div>
+
   </div>
 </section>
 
@@ -808,6 +860,61 @@
         draw();
       },
       stop() { cancelAnimationFrame(raf); t=0; }
+    };
+  })();
+
+  demos.nlp = (() => {
+    let raf, t = 0;
+    const words = ['ROUGE','NMF','BERT','RoBERTa','DistilBART','VADER','LDA','TextRank','F1','TF-IDF','Sentiment','Topic','Summary','NLP'];
+    const particles = words.map((w, i) => ({
+      word: w,
+      x: 0.1 + Math.random() * 0.8,
+      y: 0.1 + Math.random() * 0.8,
+      vx: (Math.random() - 0.5) * 0.003,
+      vy: (Math.random() - 0.5) * 0.003,
+      hue: 200 + i * 12,
+      size: 9 + Math.random() * 5,
+      phase: Math.random() * Math.PI * 2,
+    }));
+    return {
+      start(canvas, ctx) {
+        const W = canvas.width, H = canvas.height;
+        function draw() {
+          ctx.clearRect(0,0,W,H);
+          ctx.fillStyle = '#080c18'; ctx.fillRect(0,0,W,H);
+          // draw connection lines between nearby words
+          particles.forEach((a, i) => {
+            particles.forEach((b, j) => {
+              if (j <= i) return;
+              const dx = (a.x - b.x) * W, dy = (a.y - b.y) * H;
+              const dist = Math.sqrt(dx*dx + dy*dy);
+              if (dist < 120) {
+                ctx.beginPath();
+                ctx.moveTo(a.x*W, a.y*H);
+                ctx.lineTo(b.x*W, b.y*H);
+                ctx.strokeStyle = `rgba(100,160,255,${0.15 * (1 - dist/120)})`;
+                ctx.lineWidth = 0.8;
+                ctx.stroke();
+              }
+            });
+          });
+          // draw word nodes
+          particles.forEach(p => {
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0.05 || p.x > 0.95) p.vx *= -1;
+            if (p.y < 0.05 || p.y > 0.95) p.vy *= -1;
+            const pulse = 0.85 + Math.sin(t * 0.04 + p.phase) * 0.15;
+            const alpha = 0.7 + Math.sin(t * 0.03 + p.phase) * 0.3;
+            ctx.font = `${p.size * pulse}px 'DM Mono', monospace`;
+            ctx.textAlign = 'center';
+            ctx.fillStyle = `hsla(${p.hue}, 80%, 72%, ${alpha})`;
+            ctx.fillText(p.word, p.x * W, p.y * H);
+          });
+          t++; raf = requestAnimationFrame(draw);
+        }
+        draw();
+      },
+      stop() { cancelAnimationFrame(raf); t = 0; }
     };
   })();
 
