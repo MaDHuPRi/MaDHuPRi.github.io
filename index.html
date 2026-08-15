@@ -492,66 +492,7 @@
     <button class="carousel-arrow next" id="proj-next" aria-label="Next">&#8594;</button>
     <div class="projects-grid" id="proj-grid">
 
-      <!-- CARD 1: YouTube Prediction -->
-      <div class="project-card">
-        <div class="project-preview" data-video-src="youtube.webm">
-          <video src="youtube.webm" muted loop playsinline autoplay></video>
-          <span class="preview-label">▶ live demo</span>
-          <span class="preview-expand">⛶ expand</span>
-        </div>
-        <div class="project-body">
-          <div class="project-header">
-            <div class="project-emoji">📺</div>
-            <span class="project-badge">ML Pipeline · NLP</span>
-          </div>
-          <div class="project-title">YouTube Popularity Prediction</div>
-          <div class="project-desc">Structured + text features from YouTube Data API. Random Forest and XGBoost models, then KMeans &amp; HDBSCAN clustering to map predictions to actionable content tiers.</div>
-          <div class="project-highlight">⚡ Cross-validated ML with unsupervised segmentation</div>
-          <div class="project-stack">
-            <span class="stack-pill" style="animation-delay:0.00s">XGBoost</span>
-            <span class="stack-pill" style="animation-delay:0.05s">Random Forest</span>
-            <span class="stack-pill" style="animation-delay:0.10s">HDBSCAN</span>
-            <span class="stack-pill" style="animation-delay:0.15s">KMeans</span>
-            <span class="stack-pill" style="animation-delay:0.20s">Pandas</span>
-            <span class="stack-pill" style="animation-delay:0.25s">YouTube API</span>
-          </div>
-          <div class="project-footer">
-            <a href="https://github.com/MaDHuPRi/Youtube_Popularity_Classification" class="project-link" target="_blank">↗ GitHub</a>
-            <a href="https://youtubepopularity.streamlit.app" class="project-link" target="_blank">↗ Live App</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 2: Clinic Records — NL Query Tool -->
-      <div class="project-card">
-        <div class="project-preview" data-video-src="endodontist.mp4">
-          <video src="endodontist.mp4" muted loop playsinline autoplay></video>
-          <span class="preview-label">▶ live demo</span>
-          <span class="preview-expand">⛶ expand</span>
-        </div>
-        <div class="project-body">
-          <div class="project-header">
-            <div class="project-emoji">🦷</div>
-            <span class="project-badge">Text-to-SQL · Local LLM</span>
-          </div>
-          <div class="project-title">Clinic Records — NL Query Tool</div>
-          <div class="project-desc">Built for a local endodontist practice — lets front-desk staff and doctors query patient, appointment, and billing records in plain English. A local Llama model (via Ollama) translates natural-language questions into SQL, which runs against a SQLite database migrated from the practice's original MS Access records.</div>
-          <div class="project-highlight">⚡ Fully local inference · no cloud API · Dockerized for office deployment</div>
-          <div class="project-stack">
-            <span class="stack-pill" style="animation-delay:0.00s">Flask</span>
-            <span class="stack-pill" style="animation-delay:0.05s">LangChain</span>
-            <span class="stack-pill" style="animation-delay:0.10s">Llama (Ollama)</span>
-            <span class="stack-pill" style="animation-delay:0.15s">SQLite</span>
-            <span class="stack-pill" style="animation-delay:0.20s">Docker</span>
-            <span class="stack-pill" style="animation-delay:0.25s">MS Access</span>
-          </div>
-          <div class="project-footer">
-            <a href="https://github.com/MaDHuPRi/endodontist-text-to-sql" class="project-link" target="_blank">↗ GitHub</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 3: Dyslexia ML -->
+      <!-- CARD 1: Dyslexia ML -->
       <div class="project-card">
         <div class="project-preview" data-video-src="dyslexia-demo.webm">
           <video src="dyslexia-demo.webm" muted loop playsinline autoplay></video>
@@ -579,6 +520,62 @@
             <a href="https://dyslexia-diagnosis-ddqebjp7fbq2x79jpxzwev.streamlit.app" class="project-link" target="_blank">↗ Live App</a>
             <a href="#" class="project-link">↗ Publication</a>
             <a href="#" class="project-link">↗ Patent</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2: Meal Planner -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="mealplanner.webm">
+          <video src="mealplanner.webm" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🥗</div>
+            <span class="project-badge">RAG · GenAI · Clustering</span>
+          </div>
+          <div class="project-title">AI-Powered Meal Planner</div>
+          <div class="project-desc">RAG pipeline with Llama-3 + USDA FoodData API. KMeans clustering on macronutrient embeddings with a constraint-aware retrieval layer for personalized meal generation.</div>
+          <div class="project-highlight">⚡ Semantic clustering drives personalized content</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">LLaMA 3</span>
+            <span class="stack-pill" style="animation-delay:0.05s">RAG</span>
+            <span class="stack-pill" style="animation-delay:0.10s">FAISS</span>
+            <span class="stack-pill" style="animation-delay:0.15s">KMeans</span>
+            <span class="stack-pill" style="animation-delay:0.20s">LangChain</span>
+            <span class="stack-pill" style="animation-delay:0.25s">Streamlit</span>
+          </div>
+          <div class="project-footer"><a href="https://github.com/MaDHuPRi/UMBC-DATA606-Capstone" class="project-link" target="_blank">↗ GitHub</a></div>
+        </div>
+      </div>
+
+      <!-- CARD 3: Clinic Records — NL Query Tool -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="endodontist.mp4">
+          <video src="endodontist.mp4" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🦷</div>
+            <span class="project-badge">Text-to-SQL · Local LLM</span>
+          </div>
+          <div class="project-title">Clinic Records — NL Query Tool</div>
+          <div class="project-desc">Built for a local endodontist practice — lets front-desk staff and doctors query patient, appointment, and billing records in plain English. A local Llama model (via Ollama) translates natural-language questions into SQL, which runs against a SQLite database migrated from the practice's original MS Access records.</div>
+          <div class="project-highlight">⚡ Fully local inference · no cloud API · Dockerized for office deployment</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">Flask</span>
+            <span class="stack-pill" style="animation-delay:0.05s">LangChain</span>
+            <span class="stack-pill" style="animation-delay:0.10s">Llama (Ollama)</span>
+            <span class="stack-pill" style="animation-delay:0.15s">SQLite</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Docker</span>
+            <span class="stack-pill" style="animation-delay:0.25s">MS Access</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/endodontist-text-to-sql" class="project-link" target="_blank">↗ GitHub</a>
           </div>
         </div>
       </div>
@@ -640,62 +637,91 @@
         </div>
       </div>
 
-      <!-- CARD 6: Meal Planner -->
+      <!-- CARD 6: Crime Analysis -->
       <div class="project-card">
-        <div class="project-preview" data-video-src="mealplanner.webm">
-          <video src="mealplanner.webm" muted loop playsinline autoplay></video>
-          <span class="preview-label">▶ live demo</span>
-          <span class="preview-expand">⛶ expand</span>
+        <div class="project-preview" style="background: linear-gradient(135deg, #1e1e1e, #2a2a2a); display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:2.5rem; opacity:0.5;">🚔</span>
+          <span class="preview-label">▶ video coming soon</span>
         </div>
         <div class="project-body">
           <div class="project-header">
-            <div class="project-emoji">🥗</div>
-            <span class="project-badge">RAG · GenAI · Clustering</span>
+            <div class="project-emoji">🚔</div>
+            <span class="project-badge">Big Data · ML Classification</span>
           </div>
-          <div class="project-title">AI-Powered Meal Planner</div>
-          <div class="project-desc">RAG pipeline with Llama-3 + USDA FoodData API. KMeans clustering on macronutrient embeddings with a constraint-aware retrieval layer for personalized meal generation.</div>
-          <div class="project-highlight">⚡ Semantic clustering drives personalized content</div>
+          <div class="project-title">Crime Analysis Using Big Data</div>
+          <div class="project-desc">Analyzes NYPD historical complaint data at scale using Apache Spark and PySpark, uncovering patterns in crime characteristics. Naive Bayes classification models predict crime category and severity, with GeoPandas mapping used to identify geographic hotspots.</div>
+          <div class="project-highlight">⚡ Big-data pipeline over NYPD complaint records with geospatial hotspot analysis</div>
           <div class="project-stack">
-            <span class="stack-pill" style="animation-delay:0.00s">LLaMA 3</span>
-            <span class="stack-pill" style="animation-delay:0.05s">RAG</span>
-            <span class="stack-pill" style="animation-delay:0.10s">FAISS</span>
-            <span class="stack-pill" style="animation-delay:0.15s">KMeans</span>
-            <span class="stack-pill" style="animation-delay:0.20s">LangChain</span>
-            <span class="stack-pill" style="animation-delay:0.25s">Streamlit</span>
-          </div>
-          <div class="project-footer"><a href="https://github.com/MaDHuPRi/UMBC-DATA606-Capstone" class="project-link" target="_blank">↗ GitHub</a></div>
-        </div>
-      </div>
-
-      <!-- CARD 7: Consequence Map -->
-      <div class="project-card">
-        <div class="project-preview" data-video-src="consequence.mp4">
-          <video src="consequence.mp4" muted loop playsinline autoplay></video>
-          <span class="preview-label">▶ live demo</span>
-          <span class="preview-expand">⛶ expand</span>
-        </div>
-        <div class="project-body">
-          <div class="project-header">
-            <div class="project-emoji">🌊</div>
-            <span class="project-badge">Local LLM Orchestration</span>
-          </div>
-          <div class="project-title">Consequence Map</div>
-          <div class="project-desc">Interactive causal map powered by local LLM inference via Ollama — no backend, no API calls, no latency. Type any decision and get a color-coded SVG tree of 1st, 2nd, and 3rd-order consequences, all running client-side in the browser.</div>
-          <div class="project-highlight">⚡ Zero-backend · client-side LLM inference · sub-100ms render</div>
-          <div class="project-stack">
-            <span class="stack-pill" style="animation-delay:0.00s">Ollama</span>
-            <span class="stack-pill" style="animation-delay:0.05s">LLaMA 3.2</span>
-            <span class="stack-pill" style="animation-delay:0.10s">Vanilla JS</span>
-            <span class="stack-pill" style="animation-delay:0.15s">SVG</span>
-            <span class="stack-pill" style="animation-delay:0.20s">Client-side Inference</span>
+            <span class="stack-pill" style="animation-delay:0.00s">Apache Spark</span>
+            <span class="stack-pill" style="animation-delay:0.05s">PySpark</span>
+            <span class="stack-pill" style="animation-delay:0.10s">Naive Bayes</span>
+            <span class="stack-pill" style="animation-delay:0.15s">GeoPandas</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Jupyter</span>
           </div>
           <div class="project-footer">
-            <a href="https://github.com/MaDHuPRi/consequence-map" class="project-link" target="_blank">↗ GitHub</a>
+            <a href="https://github.com/MaDHuPRi/Crime-Analysis" class="project-link" target="_blank">↗ GitHub</a>
           </div>
         </div>
       </div>
 
-      <!-- CARD 8: TalentLens -->
+      <!-- CARD 7: Lab Notebook Extraction Pipeline -->
+      <div class="project-card">
+        <div class="project-preview" style="background: linear-gradient(135deg, #0d1117, #1a2332); display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:2.5rem; opacity:0.5;">🧪</span>
+          <span class="preview-label">▶ video coming soon</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🧪</div>
+            <span class="project-badge">Vision LLM · Multi-stage Pipeline</span>
+          </div>
+          <div class="project-title">Lab Notebook Extraction Pipeline</div>
+          <div class="project-desc">A 5-stage local pipeline that extracts structured, machine-readable data from handwritten chemistry lab notebook pages — text, scientific symbols, chemical structures, and full experiment understanding. Decomposes what a single vision-LLM pass fails at into preprocessing, zone segmentation, zone-specific extraction, deterministic symbol correction, and LLM assembly into a validated schema.</div>
+          <div class="project-highlight">⚡ 11/11 zones extracted, 0 validation errors on sample page · fully local</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">Ollama</span>
+            <span class="stack-pill" style="animation-delay:0.05s">minicpm-v</span>
+            <span class="stack-pill" style="animation-delay:0.10s">OpenCV</span>
+            <span class="stack-pill" style="animation-delay:0.15s">Pydantic</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Llama 3.2</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/Extraction_Lab_Notebook_Page" class="project-link" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 8: YouTube Prediction -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="youtube.webm">
+          <video src="youtube.webm" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">📺</div>
+            <span class="project-badge">ML Pipeline · NLP</span>
+          </div>
+          <div class="project-title">YouTube Popularity Prediction</div>
+          <div class="project-desc">Structured + text features from YouTube Data API. Random Forest and XGBoost models, then KMeans &amp; HDBSCAN clustering to map predictions to actionable content tiers.</div>
+          <div class="project-highlight">⚡ Cross-validated ML with unsupervised segmentation</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">XGBoost</span>
+            <span class="stack-pill" style="animation-delay:0.05s">Random Forest</span>
+            <span class="stack-pill" style="animation-delay:0.10s">HDBSCAN</span>
+            <span class="stack-pill" style="animation-delay:0.15s">KMeans</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Pandas</span>
+            <span class="stack-pill" style="animation-delay:0.25s">YouTube API</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/Youtube_Popularity_Classification" class="project-link" target="_blank">↗ GitHub</a>
+            <a href="https://youtubepopularity.streamlit.app" class="project-link" target="_blank">↗ Live App</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 9: TalentLens -->
       <div class="project-card">
         <div class="project-preview" style="background: linear-gradient(135deg, #1a1a2e, #16213e); display:flex; align-items:center; justify-content:center;">
           <span style="font-size:2.5rem; opacity:0.5;">🔍</span>
@@ -723,60 +749,7 @@
         </div>
       </div>
 
-      <!-- CARD 9: Lab Notebook Extraction Pipeline -->
-      <div class="project-card">
-        <div class="project-preview" style="background: linear-gradient(135deg, #0d1117, #1a2332); display:flex; align-items:center; justify-content:center;">
-          <span style="font-size:2.5rem; opacity:0.5;">🧪</span>
-          <span class="preview-label">▶ video coming soon</span>
-        </div>
-        <div class="project-body">
-          <div class="project-header">
-            <div class="project-emoji">🧪</div>
-            <span class="project-badge">Vision LLM · Multi-stage Pipeline</span>
-          </div>
-          <div class="project-title">Lab Notebook Extraction Pipeline</div>
-          <div class="project-desc">A 5-stage local pipeline that extracts structured, machine-readable data from handwritten chemistry lab notebook pages — text, scientific symbols, chemical structures, and full experiment understanding. Decomposes what a single vision-LLM pass fails at into preprocessing, zone segmentation, zone-specific extraction, deterministic symbol correction, and LLM assembly into a validated schema.</div>
-          <div class="project-highlight">⚡ 11/11 zones extracted, 0 validation errors on sample page · fully local</div>
-          <div class="project-stack">
-            <span class="stack-pill" style="animation-delay:0.00s">Ollama</span>
-            <span class="stack-pill" style="animation-delay:0.05s">minicpm-v</span>
-            <span class="stack-pill" style="animation-delay:0.10s">OpenCV</span>
-            <span class="stack-pill" style="animation-delay:0.15s">Pydantic</span>
-            <span class="stack-pill" style="animation-delay:0.20s">Llama 3.2</span>
-          </div>
-          <div class="project-footer">
-            <a href="https://github.com/MaDHuPRi/Extraction_Lab_Notebook_Page" class="project-link" target="_blank">↗ GitHub</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 10: Analogy Explainer -->
-      <div class="project-card">
-        <div class="project-preview" style="background: linear-gradient(135deg, #2d1b4e, #1a1a2e); display:flex; align-items:center; justify-content:center;">
-          <span style="font-size:2.5rem; opacity:0.5;">💡</span>
-          <span class="preview-label">▶ video coming soon</span>
-        </div>
-        <div class="project-body">
-          <div class="project-header">
-            <div class="project-emoji">💡</div>
-            <span class="project-badge">GenAI · Prompt Engineering</span>
-          </div>
-          <div class="project-title">Analogy Explainer</div>
-          <div class="project-desc">LLM tool that explains complex concepts through everyday analogies — describe any topic and get an ELI5-style explanation grounded in a relatable comparison. A dedicated validation layer checks generated analogies for accuracy before they're shown, rather than trusting raw LLM output.</div>
-          <div class="project-highlight">⚡ Prompt-engineered generation with a validation pass on every output</div>
-          <div class="project-stack">
-            <span class="stack-pill" style="animation-delay:0.00s">Python</span>
-            <span class="stack-pill" style="animation-delay:0.05s">LLM Client</span>
-            <span class="stack-pill" style="animation-delay:0.10s">Prompt Engineering</span>
-            <span class="stack-pill" style="animation-delay:0.15s">Output Validation</span>
-          </div>
-          <div class="project-footer">
-            <a href="https://github.com/MaDHuPRi/Analogy-Explainer" class="project-link" target="_blank">↗ GitHub</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 11: Optical Flow with RAFT -->
+      <!-- CARD 10: Optical Flow with RAFT -->
       <div class="project-card">
         <div class="project-preview" style="background: #0d1117; display:flex; align-items:center; justify-content:center;">
           <img src="opticalflow-preview.png" alt="RAFT optical flow visualization" style="width:100%; height:100%; object-fit:cover;" />
@@ -803,29 +776,56 @@
         </div>
       </div>
 
-      <!-- CARD 12: Crime Analysis -->
+      <!-- CARD 11: Analogy Explainer -->
       <div class="project-card">
-        <div class="project-preview" style="background: linear-gradient(135deg, #1e1e1e, #2a2a2a); display:flex; align-items:center; justify-content:center;">
-          <span style="font-size:2.5rem; opacity:0.5;">🚔</span>
+        <div class="project-preview" style="background: linear-gradient(135deg, #2d1b4e, #1a1a2e); display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:2.5rem; opacity:0.5;">💡</span>
           <span class="preview-label">▶ video coming soon</span>
         </div>
         <div class="project-body">
           <div class="project-header">
-            <div class="project-emoji">🚔</div>
-            <span class="project-badge">Big Data · ML Classification</span>
+            <div class="project-emoji">💡</div>
+            <span class="project-badge">GenAI · Prompt Engineering</span>
           </div>
-          <div class="project-title">Crime Analysis Using Big Data</div>
-          <div class="project-desc">Analyzes NYPD historical complaint data at scale using Apache Spark and PySpark, uncovering patterns in crime characteristics. Naive Bayes classification models predict crime category and severity, with GeoPandas mapping used to identify geographic hotspots.</div>
-          <div class="project-highlight">⚡ Big-data pipeline over NYPD complaint records with geospatial hotspot analysis</div>
+          <div class="project-title">Analogy Explainer</div>
+          <div class="project-desc">LLM tool that explains complex concepts through everyday analogies — describe any topic and get an ELI5-style explanation grounded in a relatable comparison. A dedicated validation layer checks generated analogies for accuracy before they're shown, rather than trusting raw LLM output.</div>
+          <div class="project-highlight">⚡ Prompt-engineered generation with a validation pass on every output</div>
           <div class="project-stack">
-            <span class="stack-pill" style="animation-delay:0.00s">Apache Spark</span>
-            <span class="stack-pill" style="animation-delay:0.05s">PySpark</span>
-            <span class="stack-pill" style="animation-delay:0.10s">Naive Bayes</span>
-            <span class="stack-pill" style="animation-delay:0.15s">GeoPandas</span>
-            <span class="stack-pill" style="animation-delay:0.20s">Jupyter</span>
+            <span class="stack-pill" style="animation-delay:0.00s">Python</span>
+            <span class="stack-pill" style="animation-delay:0.05s">LLM Client</span>
+            <span class="stack-pill" style="animation-delay:0.10s">Prompt Engineering</span>
+            <span class="stack-pill" style="animation-delay:0.15s">Output Validation</span>
           </div>
           <div class="project-footer">
-            <a href="https://github.com/MaDHuPRi/Crime-Analysis" class="project-link" target="_blank">↗ GitHub</a>
+            <a href="https://github.com/MaDHuPRi/Analogy-Explainer" class="project-link" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 12: Consequence Map -->
+      <div class="project-card">
+        <div class="project-preview" data-video-src="consequence.mp4">
+          <video src="consequence.mp4" muted loop playsinline autoplay></video>
+          <span class="preview-label">▶ live demo</span>
+          <span class="preview-expand">⛶ expand</span>
+        </div>
+        <div class="project-body">
+          <div class="project-header">
+            <div class="project-emoji">🌊</div>
+            <span class="project-badge">Local LLM Orchestration</span>
+          </div>
+          <div class="project-title">Consequence Map</div>
+          <div class="project-desc">Interactive causal map powered by local LLM inference via Ollama — no backend, no API calls, no latency. Type any decision and get a color-coded SVG tree of 1st, 2nd, and 3rd-order consequences, all running client-side in the browser.</div>
+          <div class="project-highlight">⚡ Zero-backend · client-side LLM inference · sub-100ms render</div>
+          <div class="project-stack">
+            <span class="stack-pill" style="animation-delay:0.00s">Ollama</span>
+            <span class="stack-pill" style="animation-delay:0.05s">LLaMA 3.2</span>
+            <span class="stack-pill" style="animation-delay:0.10s">Vanilla JS</span>
+            <span class="stack-pill" style="animation-delay:0.15s">SVG</span>
+            <span class="stack-pill" style="animation-delay:0.20s">Client-side Inference</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/MaDHuPRi/consequence-map" class="project-link" target="_blank">↗ GitHub</a>
           </div>
         </div>
       </div>
